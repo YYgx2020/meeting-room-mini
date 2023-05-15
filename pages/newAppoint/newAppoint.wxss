@@ -1,0 +1,11 @@
+/* pages/newAppoint/newAppoint.wxss */
+.tips_item {
+  padding: 6rpx 0rpx;
+}
+
+.font {
+  color: #858585;
+  font-weight: 700;
+  font-size: 28rpx;
+  border-bottom: solid 1.5px #858585;
+}

@@ -1,6 +1,28 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/my/my",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/forget/forget",
+    "pages/chooseRole/chooseRole",
+    "pages/chooseOrganization/chooseOrganization",
+    "pages/organization/organization",
+    "pages/admission/admission",
+    "pages/admission/components/search/search",
+    "pages/handleAppointment/handleAppointment",
+    "pages/roomList/roomList",
+    "pages/appointment/appointment",
+    "pages/personal/personal",
+    "components/empty/empty",
+    "pages/fail/fail",
+    "pages/registerApply/registerApply",
+    "pages/addRoom/addRoom",
+    "pages/roomDetail/roomDetail",
+    "pages/roomInfo/roomInfo",
+    "pages/newAppoint/newAppoint",
+    "pages/handleAppointItem/handleAppointItem",
+    "pages/roomList/components/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -10,5 +32,26 @@
     "navigationStyle": "default"
   },
   "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  "sitemapLocation": "sitemap.json",
+  "tabBar": {
+    "custom": false,
+    "color": "#000000",
+    "selectedColor": "#07c160",
+    "backgroundColor": "#f6f6f6",
+    "list": [
+      {
+        "selectedIconPath": "/static/images/tabBar/index_selected.png",
+        "iconPath": "/static/images/tabBar/index_select.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "/static/images/tabBar/my_selected.png",
+        "iconPath": "/static/images/tabBar/my_select.png",
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
+  },
+  "usingComponents": {}
 }

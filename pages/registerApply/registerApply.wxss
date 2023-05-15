@@ -1,0 +1,90 @@
+.register-apply-page {
+  background-color: var(--bgColor1);
+}
+.register-apply-page .header-title__box {
+  width: 100vw;
+  position: relative;
+  line-height: 110rpx;
+}
+.register-apply-page .header-title__box .title {
+  font-size: 36rpx;
+  font-weight: 700;
+  text-align: center;
+}
+.register-apply-page .header-title__box .search-icon {
+  position: absolute;
+  width: 40rpx;
+  top: 0rpx;
+  right: 34rpx;
+  font-size: 44rpx;
+}
+.register-apply-page .nav-bar__box {
+  width: 100vw;
+  height: 64rpx;
+  background-color: var(--bgColor1);
+  display: flex;
+  line-height: 64rpx;
+}
+.register-apply-page .nav-bar__box .nav-item {
+  width: 50%;
+  text-align: center;
+}
+.register-apply-page .nav-bar__box .nav-active {
+  color: var(--mainColor);
+  font-weight: 700;
+  font-size: 36rpx;
+}
+.register-apply-page .scroll-contanier {
+  width: 100%;
+  height: calc(100vh - 174rpx);
+  box-sizing: border-box;
+  background-color: var(--bgColor1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-apply-page .scroll-contanier .last-iem {
+  margin-bottom: 300rpx;
+}
+.register-apply-page .scroll-contanier .list-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.register-apply-page .scroll-contanier .list-item {
+  margin-top: 32rpx;
+  width: calc(100vw - 64rpx);
+  background-color: var(--bgColor2);
+  border-radius: 10rpx;
+  padding: 32rpx;
+  padding-bottom: 64rpx;
+  box-sizing: border-box;
+}
+.register-apply-page .scroll-contanier .list-item .list-item__tip {
+  padding: 32rpx 0rpx;
+  position: relative;
+  display: flex;
+}
+.register-apply-page .scroll-contanier .list-item .list-item__tip .status-img {
+  width: 108rpx;
+  height: 85rpx;
+  position: absolute;
+  right: 16rpx;
+  top: 16rpx;
+}
+.register-apply-page .scroll-contanier .list-item .list-item__cell {
+  padding-bottom: 16rpx;
+  display: flex;
+}
+.register-apply-page .scroll-contanier .list-item .list-item__cell .list-item__title {
+  color: var(--msgBoxTitle);
+  width: 192rpx;
+}
+.register-apply-page .scroll-contanier .list-item .list-item__cell .list-item__content {
+  box-sizing: border-box;
+  width: calc(100% - 192rpx);
+}
+.register-apply-page .scroll-contanier .list-item .list-item__operation {
+  margin-top: 32rpx;
+  display: flex;
+}

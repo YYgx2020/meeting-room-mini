@@ -1,0 +1,43 @@
+<!--pages/admission/components/search/search.wxml-->
+<view class="search-page">
+  <!-- 头部搜索框 -->
+  <view wx:if="{{ !showDateTip }}" class="search-bar__box" bindtap="showSearch">
+    <view class="search-left-input-label">
+      <view class="search-icon">
+        <icon class="iconfont icon-sousuo"></icon>
+      </view>
+      <view class="search-input">
+        <input value="{{keyWord}}" type="text" bindinput="bindinputEvent" placeholder="请输入关键词搜索" />
+      </view>
+      <view wx:if="{{cancelIcon}}" class="cancel-icon" catchtap="cancelSearch">
+        <icon class="iconfont icon-quxiao2"></icon>
+      </view>
+    </view>
+    <view class="search-btn">
+      <text catchtap="navBack">取消</text>
+    </view>
+  </view>
+  <block wx:if="{{ showSearch }}">
+    <!-- 按日期检索 -->
+    <view class="date-search-panel" wx:if="{{ !showDateTip }}">
+      <picker mode="date" bindchange="bindDateChange">
+        <text>日期</text>
+      </picker>
+      <text></text>
+    </view>
+    <view class="date-tip-text-box" wx:if="{{ showDateTip }}">
+      <view class="__left">
+        <text>以下是<text style="color: #07c160;">{{ date }}</text>的审核记录</text>
+      </view>
+      <view class="__right" bindtap="resetDate">
+        <text>重选</text>
+      </view>
+    </view>
+
+    <!-- 搜索结果展示 -->
+    <scroll-view class="search-result__scroll">
+      <view class="search-result">
+      </view>
+    </scroll-view>
+  </block>
+</view>

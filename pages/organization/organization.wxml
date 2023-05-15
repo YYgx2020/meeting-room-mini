@@ -1,0 +1,113 @@
+<!--pages/organization/organization.wxml-->
+<view class="organization-page">
+  <view class="weui-form">
+    <view class="weui-form__text-area">
+      <view class="weui-form__title">申请入驻</view>
+      <view class="weui-form__desc">企业或学校可以在这里向系统提交企业或学校的信息给系统管理员进行审核，审核通过之后方可使用本平台添加本企业或者学校的会议室信息，同时，提交申请的人将成为企业或者学校会议室的管理员，可以对会议室进行添加、编辑、删除等操作</view>
+    </view>
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <!-- 组织机构名称表单 -->
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">组织机构信息</view>
+          <view class="weui-cells">
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd required">
+                <text class="weui-label">名称</text>
+              </view>
+              <view class="weui-cell__bd">
+                <input type="text" id="organizationName" bindinput="handleInput" maxlength="11" class="weui-input" placeholder="请输入组织机构的名称" />
+              </view>
+            </label>
+          </view>
+        </view>
+        <!-- 组织机构类型选择表单 -->
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">组织机构类型</view>
+          <view class="weui-cells weui-cells_after-title">
+            <radio-group bindchange="handleInput" id="type">
+              <label class="weui-cell weui-check__label" wx:for="{{type}}" wx:key="id">
+                <view class="weui-cell__hd">
+                  <radio value="{{item.id}}" checked="{{item.checked}}" />
+                </view>
+                <view class="weui-cell__bd">{{item.value}}</view>
+              </label>
+            </radio-group>
+          </view>
+        </view>
+        <!-- 组织机构描述表单 -->
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">组织机构描述</view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active">
+              <view class="weui-cell__bd">
+                <textarea id="description" bindinput="handleInput" class="weui-textarea" rows="5" placeholder="请简单描述一下你的组织机构（可为空）"></textarea>
+                <view class="weui-textarea-counter"><text>0</text>/200</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <!-- 申请人信息表单 -->
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">申请人信息</view>
+          <view class="weui-cells weui-cells_after-title">
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd required">
+                <text class="weui-label">申请人</text>
+              </view>
+              <view class="weui-cell__bd">
+                <input id="name" bindinput="handleInput" type="text" placeholder="请输入申请人的姓名" />
+              </view>
+            </label>
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd required">
+                <text class="weui-label">电话</text>
+              </view>
+              <view class="weui-cell__bd weui-flex">
+                <input id="phone" bindinput="handleInput" type="number" maxlength="11" placeholder="请输入申请人的电话" />
+              </view>
+            </label>
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd required">
+                <text class="weui-label">设置密码</text>
+              </view>
+              <view class="weui-cell__bd weui-flex">
+                <input id="password" bindinput="handleInput" type="password" maxlength="12" placeholder="请设置密码" />
+              </view>
+            </label>
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd required">
+                <text class="weui-label">确认密码</text>
+              </view>
+              <view class="weui-cell__bd weui-flex">
+                <input id="verifyPwd" bindinput="handleInput" type="password" maxlength="12" placeholder="请确认密码" />
+              </view>
+            </label>
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd required">
+                <text class="weui-label">邮箱</text>
+              </view>
+              <view class="weui-cell__bd weui-flex">
+                <input id="email" bindinput="handleInput" type="text" maxlength="64" placeholder="请输入您的电子邮箱" />
+              </view>
+            </label>
+            <view class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd">
+                <text class="weui-label" style="max-width: 5.4em;margin-right: 0;">邮箱验证码</text>
+              </view>
+              <view class="weui-cell__bd weui-flex">
+                <input type="text" id="verifyCode" bindinput="handleInput" maxlength="6" class="weui-input" placeholder="输入验证码" />
+              </view>
+              <button role="button" id="js_btn_vcode" class="js_target weui-cell__control weui-btn weui-btn_default weui-vcode-btn" style="line-height: 88rpx; margin: 0rpx;" bindtap="getCode">
+                {{ canSendCode ? captchaTime + "秒后重试" : "获取验证码" }}
+              </button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-form__opr-area">
+      <a class="{{ fillout ? 'weui-btn weui-btn_primary' : 'weui-btn weui-btn_primary weui-btn_disabled'}}" role="button" bindtap="submitApply">确定</a>
+    </view>
+  </view>
+</view>

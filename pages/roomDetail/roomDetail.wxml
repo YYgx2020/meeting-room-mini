@@ -1,0 +1,80 @@
+<!--pages/roomDetail/roomDetail.wxml-->
+<view class="room-detail-page">
+  <!-- 顶部信息 -->
+  <view class="header-room-info">
+    <view class="code">
+      <text>{{code}}</text>
+    </view>
+    <view class="title">
+      <text>预约情况</text>
+    </view>
+    <view class="more" bindtap="handleLookMore">
+      <text class="more-tip">查看更多</text>
+      <text class="more-icon iconfont icon-xiangyou"></text>
+    </view>
+  </view>
+
+  <!-- 中间预约情况 -->
+  <view class="appoint-box">
+    <scroll-view class="scroll-nav" scroll-x enable-flex scroll-into-view="{{'srcoll' + navId}}" scroll-with-animation="true" enhanced="true" show-scrollbar="false">
+      <view class="nav-item" wx:for="{{dateList}}" wx:key="id" id="{{'srcoll' + item.id}}">
+        <view class="nav-content {{navId === item.id? 'active': ''}}" bindtap="changeNav" id="{{item.id}}">
+          {{item.date}}
+        </view>
+      </view>
+    </scroll-view>
+    <swiper class="swiper-container" bindchange="swiperChange" current="{{current}}" easing-function="default">
+      <block wx:for="{{dateList}}" wx:key="id">
+        <!-- 显示默认的日期安排 -->
+        <swiper-item wx:if="{{!has}}">
+          <!-- 每天的预约情况 -->
+          <scroll-view scroll-y class="date-appoint-list" bindscrolltolower="bindDownLoad">
+            <!-- 有安排的：显示当前日期的每条安排 -->
+            <view wx:if="{{true}}" wx:for="{{defaultAppoint}}" wx:key="index" wx:for-item="items" wx:for-index="idx">
+              <view hover-class="btn-hover" class="appoint-item {{items.status === '空闲'&&'noshangke'}} {{items.isban && 'ban'}}" data-item="{{items}}" data-index="{{idx}}" bindtap="newAppoint">
+                <view class="time">
+                  <!-- 应该在点击之后再显示是否修改，而不是点击那个时间就弹出时间选择器 -->
+                  <text class="startTime {{items.isban && 'fontClass'}}">{{items.time.startTime}}</text>
+                  <text class="connector {{items.isban && 'fontClass'}}">-</text>
+                  <text class="endTime {{items.isban && 'fontClass'}}">{{items.time.endTime}}</text>
+                </view>
+                <view class="status">
+                  <text class="{{(items.status === '空闲' && !items.isban) && 'kongxian'}} {{items.status === '已预约' && 'appointed'}} {{items.isban && 'fontClass'}}">{{items.status}}</text>
+                </view>
+                <!-- 加一个有预约待处理的提示 -->
+                <view class="toBeProcessed" wx:if="{{items.detail.length !== 0 && items.status === '空闲' && !items.hasDealAll && is_admin && !items.isban}}">
+                </view>
+                <text wx:if="{{items.status === '空闲'}}" class="toRightIcon iconfont icon-xiangyou"></text>
+              </view>
+            </view>
+            <!-- 没有安排的：显示默认安排 -->
+          </scroll-view>
+        </swiper-item>
+        <!-- 显示有预约的日期安排 -->
+        <swiper-item wx:if="{{has}}">
+          <!-- 每天的预约情况 -->
+          <scroll-view scroll-y class="date-appoint-list" bindscrolltolower="bindDownLoad">
+            <!-- 有安排的：显示当前日期的每条安排 -->
+            <view wx:if="{{true}}" wx:for="{{roomAppointList}}" wx:key="index" wx:for-item="items" wx:for-index="idx">
+              <view hover-class="btn-hover" class="appoint-item {{items.status === '空闲'&&'noshangke'}} {{items.isban && 'ban'}}" bindtap="newAppoint" data-item="{{items}}" data-index="{{idx}}">
+                <view class="time">
+                  <!-- 应该在点击之后再显示是否修改，而不是点击那个时间就弹出时间选择器 -->
+                  <text class="startTime {{items.isban && 'fontClass'}}">{{items.time.startTime}}</text>
+                  <text class="connector {{items.isban && 'fontClass'}}">-</text>
+                  <text class="endTime {{items.isban && 'fontClass'}}">{{items.time.endTime}}</text>
+                </view>
+                <view class="status">
+                  <text class="{{(items.status === '空闲' && !items.isban) && 'kongxian'}} {{items.status === '已预约' && 'appointed'}} {{items.isban && 'fontClass'}}">{{items.status}}</text>
+                </view>
+                <!-- 加一个有预约待处理的提示 -->
+                <view class="toBeProcessed" wx:if="{{items.detail.length !== 0 && items.status === '空闲' && !items.hasDealAll && is_admin && !items.isban}}">
+                </view>
+                <text wx:if="{{items.status === '空闲'}}" class="toRightIcon iconfont icon-xiangyou"></text>
+              </view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+</view>

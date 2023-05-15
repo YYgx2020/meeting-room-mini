@@ -1,0 +1,5 @@
+.weui-cells__tips {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

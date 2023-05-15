@@ -1,0 +1,43 @@
+<!--pages/roomList/roomList.wxml-->
+<view class="room-list-page">
+  <!-- 头部标题 -->
+  <view class="header-box">
+    <view class="header-box__left">
+      <text>5/10 周三</text>
+    </view>
+    <view class="header-box__middle">
+      <text>会议室列表</text>
+    </view>
+    <view class="header-box__right">
+      <text class="iconfont icon-sousuo1" bindtap="navToSearch"></text>
+      <text wx:if="{{is_organization_admin}}" class="iconfont icon-zengjia" bindtap="navToAddRoom"></text>
+    </view>
+  </view>
+  <!-- 会议室列表 -->
+  <scroll-view class="scroll-box" scroll-y enable-flex>
+    <view wx:if="{{roomList.length == 0}}" class="no-data">
+      <text>暂无记录</text>
+    </view>
+    <view class="meeting-room-item" wx:for="{{roomList}}" wx:key="id" bindtap="navToRoomDetail" data-item="{{item}}">
+      <view class="room-cover">
+        <image mode="aspectFill" src="{{item.cover}}"></image>
+      </view>
+      <view class="item-content">
+        <view class="label">
+          <icon class="label-icon iconfont icon-biaoqian"></icon>
+          <text>{{item.code}}</text>
+        </view>
+        <view class="label">
+          <icon class="label-icon iconfont icon-dizhi"></icon>
+          <text>{{item.address}}</text>
+        </view>
+        <view class="label">
+          <icon class="label-icon iconfont icon-renshu"></icon>
+          <text>可容纳人数：</text>
+          <text style="font-size: 44rpx; font-weight: 700;">{{item.number}}</text>
+        </view>
+      </view>
+    </view>
+    <empty></empty>
+  </scroll-view>
+</view>

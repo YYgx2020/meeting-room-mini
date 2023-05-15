@@ -1,0 +1,61 @@
+<!-- pages/handleAppointItem/handleAppointItem.wxml -->
+<view class="page">
+  <scroll-view class="scroll" scroll-y="{{true}}" enable-flex="{{true}}">
+    <view class="title-tip">
+      <view>
+        <text decode>以下是<text>{{code}}</text>&nbsp;&nbsp;<text>{{date}}</text>&nbsp;&nbsp;<text>{{time}}</text>的预约记录
+        </text>
+      </view>
+      <view style="margin-top: 6px;">
+        <text>当前预约消息是存在冲突的，您需要筛选优先级最高的预约申请，当点击某一条通过之后，其他预约消息将会被视为不通过</text>
+      </view>
+    </view>
+    <!-- wx:for="{{currentAppointList}}" -->
+    <view class="list-item" wx:for="{{currentAppointList}}">
+      <view class="list-item__tip">
+        <text wx:if="{{item.is_pass == 0}}">待审批</text>
+        <text wx:if="{{item.is_pass == 1}}">已审批</text>
+        <text wx:if="{{item.is_pass == 2}}">已审批</text>
+        <text wx:if="{{item.is_pass == 3}}">已取消</text>
+        <view class="status-img">
+          <!-- mode="heightFix" style="height: 100%;" -->
+          <image style="width: 100%; height: 100%;" src="{{item.statusImg}}"></image>
+        </view>
+      </view>
+      <view class="list-item__cell">
+        <view class="list-item__title">预约人</view>
+        <view class="list-item__content">
+          <text user-select="true">{{item.contact}}</text>
+        </view>
+      </view>
+      <view class="list-item__cell">
+        <view class="list-item__title">联系方式</view>
+        <view class="list-item__content">
+          <text user-select="true">{{item.phone}}</text>
+        </view>
+      </view>
+      <view class="list-item__cell">
+        <view class="list-item__title">申请时间</view>
+        <view class="list-item__content">
+          <text user-select="true">{{item.createdAt}}</text>
+        </view>
+      </view>
+      <view class="list-item__cell">
+        <view class="list-item__title">申请缘由</view>
+        <view class="list-item__content">
+          <text user-select="true">{{item.reason}}</text>
+        </view>
+      </view>
+      <!-- 审批按钮 -->
+      <view wx:if="{{item.is_pass === 0}}" class="list-item__operation">
+        <a role="button" class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea" data-index="{{index}}" data-item="{{item}}" bindtap="noPass">
+          不通过
+        </a>
+        <a role="button" class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea" data-index="{{index}}" data-item="{{item}}" bindtap="pass">
+          通 过
+        </a>
+      </view>
+    </view>
+    <empty></empty>
+  </scroll-view>
+</view>

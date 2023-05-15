@@ -1,5 +1,7 @@
 @import "/static/iconfont/iconfont.wxss";
 /* @import "/weui.wxss"; */
+@import '/miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+
 
 /**app.wxss**/
 .container {
@@ -16,11 +18,67 @@ text {
   letter-spacing: 2rpx;
 }
 
+/* 全局样式设置 */
+
+Page {
+  /* 定义一些全局颜色 */
+  --linkTextColor: #576b95;
+  --bgColor1: #ededed;
+  --bgColor2: #fff;
+  --requiredColor: #fa5151;
+  --msgBoxTitle: #808080;
+  --mainColor: #07c160;
+  --nodataTextColor: rgba(0, 0, 0, 0.5);
+}
+
+/* 表单提示小红点 */
+.required {
+  position: relative;
+}
+
+.required::before {
+  position: absolute;
+  content: '*';
+  color: var(--requiredColor);
+  left: -24rpx;
+  top: -22rpx;
+  font-size: 44rpx;
+}
+
+/* 文字点击提示 */
+.text-hover {
+  opacity: .8;
+}
+
+.btn-hover {
+  background-color: #ededed;
+}
+
+.space {
+  width: 100vw;
+  height: 300rpx;
+  background-color: var(--bgColor1);
+}
+
+/* 无记录样式 */
+.no-data {
+  margin-top: 100rpx;
+  line-height: 112rpx;
+  font-size: 42rpx;
+  color: var(--nodataTextColor);
+}
+
+.weui-form__control-area {
+  margin: 24px 0;
+}
+
+
 /* 
   背景色
   #ffffff 白色
   #ededed 背景灰色
-  #adadad 灰色背景里面的文字颜色
+  rgba(0, 0, 0, 0.5) 灰色背景里面的文字颜色
+  #07c160 按钮颜色（绿色）
   #676767 蒙板颜色(微信自带的)
   #black + opacity: 0.597; 可以达到微信自带的背景蒙版效果
   #b2b2b2 白色背景板中的提示文字颜色

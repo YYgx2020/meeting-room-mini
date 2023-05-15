@@ -1,0 +1,122 @@
+.register-apply-page {
+
+  background-color: var(--bgColor1);
+
+  // 头部标题
+  .header-title__box {
+    width: 100vw;
+    // height: 110rpx;
+    position: relative;
+    line-height: 110rpx;
+
+    .title {
+      font-size: 36rpx;
+      font-weight: 700;
+      text-align: center;
+      // line-height: 110rpx;
+    }
+
+    .search-icon {
+      position: absolute;
+      width: 40rpx;
+      top: 0rpx;
+      right: 34rpx;
+      font-size: 44rpx;
+    }
+  }
+
+  // 是否已经审核的导航
+  .nav-bar__box {
+    width: 100vw;
+    height: 64rpx;
+    background-color: var(--bgColor1);
+    display: flex;
+    line-height: 64rpx;
+
+    .nav-item {
+      width: 50%;
+      text-align: center;
+    }
+
+    .nav-active {
+      color: var(--mainColor);
+      font-weight: 700;
+      font-size: 36rpx;
+    }
+  }
+
+  // 滑动页面
+  .scroll-contanier {
+    // justify-items: center;
+    width: 100%;
+    height: calc(100vh - 174rpx);
+    box-sizing: border-box;
+    // padding-top: 32rpx;
+    background-color: var(--bgColor1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // text-align: center;
+
+
+    .last-iem {
+      margin-bottom: 300rpx;
+    }
+
+    .list-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      
+    }
+
+    .list-item {
+      margin-top: 32rpx;
+      width: calc(100vw - 64rpx);
+      // height: 560rpx;
+      background-color: var(--bgColor2);
+      border-radius: 10rpx;
+      padding: 32rpx;
+      padding-bottom: 64rpx;
+      box-sizing: border-box;
+
+      .list-item__tip {
+        // line-height: 64rpx;
+        padding: 32rpx 0rpx;
+        position: relative;
+
+        display: flex;
+        .status-img {
+          width: 108rpx;
+          height: 85rpx;
+          position: absolute;
+          right: 16rpx;
+          top: 16rpx;
+        }
+      }
+
+      .list-item__cell {
+        padding-bottom: 16rpx;
+        display: flex;
+
+        .list-item__title {
+          color: var(--msgBoxTitle);
+          width: 192rpx;
+        }
+
+        .list-item__content {
+          // padding-left: 16rpx;
+          // margin-left: rpx;
+          box-sizing: border-box;
+          width: calc(100% - 192rpx);
+        }
+      }
+
+      .list-item__operation {
+        margin-top: 32rpx;
+        display: flex;
+      }
+    }
+
+  }
+}

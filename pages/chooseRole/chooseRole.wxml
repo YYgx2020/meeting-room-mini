@@ -1,0 +1,44 @@
+<!--pages/chooseRole/chooseRole.wxml-->
+<view class="choose-role-page">
+  <view class="weui-form">
+    <view class="weui-form__text-area">
+      <view class="weui-form__title">选择注册类型</view>
+      <view class="weui-form__desc">
+        <text>其他用户为临时用户，不属于任何组织，无需审核即可快速注册成为平台用户，但是在预约会议室时需要向会议室所属组织机构申请预约权限</text>
+      </view>
+    </view>
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells weui-cells_after-title">
+          <radio-group bindchange="radioChange">
+            <label class="weui-cell weui-check__label" wx:for="{{roles}}" wx:key="id">
+              <view class="weui-cell__hd">
+                <radio value="{{item.id}}" checked="{{item.checked}}" />
+              </view>
+              <view class="weui-cell__bd">{{item.value}}</view>
+            </label>
+          </radio-group>
+        </view>
+        <view wx:if="{{false}}" class="weui-cells">
+          <picker mode="selector" range="{{roles}}" bindchange="bindPickerChange">
+            <label class="weui-cell weui-cell_active">
+              <view class="weui-cell__hd">
+                <text class="weui-label"></text>
+              </view>
+              <view class="weui-cell__bd">
+                <text>{{selected}}</text>
+              </view>
+              <view class="weui-cell__ft">
+                <icon class="iconfont icon-xiangyou"></icon>
+              </view>
+            </label>
+          </picker>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-form__opr-area">
+      <a href="" role="button" bindtap="nextStep" class="weui-btn weui-btn_primary">下一步</a>
+    </view>
+  </view>
+</view>

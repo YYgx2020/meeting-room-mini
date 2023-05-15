@@ -1,0 +1,79 @@
+.index-page {
+  height: 100vh;
+  background-color: #ededed;
+  // 轮播图展示区
+  .swiper-container {
+    swiper {
+      height: 400rpx;
+      width: 100vw;
+
+      .swiper-item {
+        width: 100%;
+      }
+    }
+  }
+  // 功能条展示区
+  .func-list {
+
+    .base() {
+      background-color: #fff;
+      width: 100vw;
+    }
+
+    .base-func {
+      .base;
+    }
+
+    .admin-func {
+      .base;
+      margin-top: 20rpx;
+    }
+
+    .tourist-func {
+      .base;
+      margin-top: 20rpx;
+    }
+
+    .system-admin-func {
+      .base;
+      margin-top: 20rpx;
+    }
+
+    .list-item {
+      line-height: 112rpx;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .left-icon {
+        height: 112rpx;
+        width: 112rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .right-text {
+        width: calc(100vw - 112rpx);
+        position: relative;
+        text {
+          font-weight: 700;
+          font-size: large;
+        }
+        icon {
+          position: absolute;
+          right: 32rpx;
+        }
+      }
+
+      #first::after {
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 1rpx;
+        background-color: #ededed;
+        bottom: 0rpx;
+        left: 0rpx;
+      }
+    }
+  }
+}

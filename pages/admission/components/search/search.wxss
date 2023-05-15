@@ -1,0 +1,66 @@
+.search-page {
+  background-color: var(--bgColor1);
+  width: 100vw;
+  height: 100vh;
+}
+.search-page .search-bar__box {
+  height: 110rpx;
+  padding: 0 32rpx;
+  background: var(--bgColor1);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.search-page .search-bar__box .search-left-input-label {
+  width: calc(100vw - 68rpx - 96rpx);
+  height: 64rpx;
+  line-height: 64rpx;
+  background-color: var(--bgColor2);
+  padding: 0rpx 12rpx;
+  box-sizing: border-box;
+  border-radius: 8rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+.search-page .search-bar__box .search-left-input-label .search-input {
+  padding-left: 12rpx;
+  width: calc(100% - 80rpx);
+  line-height: 1;
+}
+.search-page .search-bar__box .search-left-input-label .cancel-icon {
+  text-align: center;
+  width: 44rpx;
+  height: 63rpx;
+  line-height: 1;
+  z-index: 100;
+  position: absolute;
+  right: 0rpx;
+  color: #0303037c;
+}
+.search-page .search-bar__box .search-btn {
+  width: 96rpx;
+  text-align: center;
+  font-weight: 700;
+  color: var(--linkTextColor);
+}
+.search-page .date-search-panel {
+  width: 100vw;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  color: var(--linkTextColor);
+}
+.search-page .date-tip-text-box {
+  width: 100vw;
+  height: 88rpx;
+  line-height: 88rpx;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.search-page .date-tip-text-box .__right {
+  color: var(--linkTextColor);
+}

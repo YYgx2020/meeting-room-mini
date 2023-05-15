@@ -1,0 +1,145 @@
+<!--pages/handleAppointment/handleAppointment.wxml-->
+<view class="admission-page">
+  <view class="header-title__box">
+    <view class="title">
+      <text>审核记录</text>
+    </view>
+    <view class="search-icon iconfont icon-sousuo" bindtap="navSearchPage"></view>
+  </view>
+  <block wx:if="{{ !showSearch }}">
+    <!-- 分类导航 -->
+    <view class="nav-bar__box">
+      <view class="{{current === 0 ? 'nav-item nav-active' : 'nav-item'}}" bindtap="changeNav" data-current="0">
+        <text>待审核</text>
+      </view>
+      <view class="{{current === 1 ? 'nav-item nav-active' : 'nav-item'}}" data-current="1" bindtap="changeNav">
+        <text>已审核</text>
+      </view>
+    </view>
+
+    <!-- 使用 scroll-into-view 的方案 -->
+    <!-- scroll-into-view="{{toView1}}" -->
+    <!-- 待审批的数据 -->
+    <scroll-view id="scroll1" scroll-into-view="{{toView1}}" class="scroll-contanier" enable-flex scroll-y="{{true}}" enhanced="{{true}}" bindrefresherrefresh="bindrefresherrefresh1" refresher-enabled="{{true}}" refresher-default-style="none" refresher-triggered="{{triggered1}}" binddragend="binddragend1" scroll-top="{{scrollTop1}}" wx:if="{{current === 0}}">
+      <view wx:if="{{waitList.length == 0}}" class="no-data">
+        <text>暂无记录</text>
+      </view>
+      <!-- 待审批的 -->
+      <view class="list-item" wx:for="{{waitList}}" wx:key="id">
+        <view class="list-item__tip">
+          <text>待审核提醒</text>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">会议室</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.roomInfo.code}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">预约日期</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.appoint_date}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">时间段</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.start_time}}-{{item.end_time}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">申请人</view>
+          <view class="list-item__content">{{item.contact}}</view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">联系方式</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.phone}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">申请时间</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.createdAt}}</text>
+          </view>
+        </view>
+        <!-- 审批按钮 -->
+        <view class="list-item__operation">
+          <a role="button" class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea" data-item="{{item}}" bindtap="noPass">不通过</a>
+          <a role="button" class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea" data-item="{{item}}" bindtap="pass">通 过</a>
+        </view>
+      </view>
+      <!-- 初次进入页面时滑动到当前标签 -->
+      <empty id="item{{waitList.length}}"></empty>
+    </scroll-view>
+
+    <!-- 已审批的数据 -->
+    <scroll-view scroll-into-view="{{toView2}}" class="scroll-contanier" enable-flex scroll-y="{{true}}" enhanced="{{true}}" bindrefresherrefresh="bindrefresherrefresh2" refresher-enabled="{{true}}" refresher-default-style="none" refresher-triggered="{{triggered2}}" binddragend="binddragend2" scroll-top="{{scrollTop2}}" wx:if="{{current === 1}}">
+      <view wx:if="{{approvalList.length == 0}}" class="no-data">
+        <text>暂无记录</text>
+      </view>
+      <view class="list-item" wx:for="{{approvalList}}" wx:key="id">
+        <view class="list-item__tip">
+          <text wx:if="{{item.is_pass !== 3}}">已审批</text>
+          <text wx:if="{{item.is_pass == 3}}">用户已取消</text>
+          <view class="status-img">
+            <!-- mode="heightFix" style="height: 100%;" -->
+            <image style="width: 100%; height: 100%;" src="{{item.statusImg}}"></image>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">会议室</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.roomInfo.code}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">预约日期</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.appoint_date}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">时间段</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.start_time}}-{{item.end_time}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">申请人</view>
+          <view class="list-item__content">{{item.contact}}</view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">联系方式</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.phone}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">申请时间</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.createdAt}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell" wx:if="{{item.is_pass !== 3}}">
+          <view class="list-item__title">审批时间</view>
+          <view class="list-item__content">
+            <text user-select="true">{{item.approval_time}}</text>
+          </view>
+        </view>
+        <view class="list-item__cell">
+          <view class="list-item__title">不通过缘由</view>
+          <view class="list-item__content">{{item.no_pass_reason ? item.no_pass_reason : '无'}}</view>
+        </view>
+        <!-- 审批按钮 -->
+        <!-- <view class="list-item__operation">
+          <a role="button" class="weui-btn weui-btn_mini weui-btn_warn weui-wa-hotarea">不通过</a>
+          <a role="button" class="weui-btn weui-btn_mini weui-btn_primary weui-wa-hotarea">通 过</a>
+        </view> -->
+      </view>
+      <!-- 初次进入页面时滑动到当前标签 -->
+      <empty id="item{{approvalList.length}}"></empty>
+    </scroll-view>
+  </block>
+
+</view>

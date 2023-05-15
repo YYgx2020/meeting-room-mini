@@ -1,18 +1,88 @@
 <!--pages/index/index.wxml-->
-<view class="pageContainer">
-  <view class="saomaContainer" bindtap="handleSaoma">
-    <view class="outer">
-      <text class="innerTip">扫码查看教室的预约信息</text>
-      <text class="inner iconfont icon-saoma"></text>
+<view class="index-page">
+  <!-- 轮播图展示 -->
+  <view class="swiper-container">
+    <swiper autoplay="true" circular="true" indicator-dots="true">
+      <swiper-item wx:for="{{swiperImg}}" wx:key="item">
+        <image style="width: 100%; height: 100%" src="{{item}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 功能条列表 -->
+  <view class="func-list">
+    <view class="base-func">
+      <!-- 查看预约 -->
+      <view class="list-item" hover-class="btn-hover" id="appointment" bindtap="nextPage">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/yuyue.png"></image>
+        </view>
+        <view class="right-text" id="first">
+          <text>查看预约</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+      <!-- 会议室列表 -->
+      <view class="list-item" hover-class="btn-hover" id="roomList" bindtap="nextPage">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/roomList.png"></image>
+        </view>
+        <view class="right-text">
+          <text>会议室列表</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+    </view>
+
+    <view class="admin-func" wx:if="{{userInfo.is_admin}}">
+      <!-- 处理预约 -->
+      <view class="list-item" hover-class="btn-hover" id="handleAppointment" bindtap="nextPage">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/deal.png"></image>
+        </view>
+        <view class="right-text" id="first">
+          <text>处理预约</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+    </view>
+
+    <!-- 入驻申请 -->
+    <view class="tourist-func" wx:if="{{ !login }}">
+      <view class="list-item" hover-class="btn-hover" bindtap="applyAdmission">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/settle_in.png"></image>
+        </view>
+        <view class="right-text">
+          <text>申请入驻</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+    </view>
+
+    <!-- 入驻申请审批 -->
+    <view class="system-admin-func" wx:if="{{ userInfo.is_system_admin }}">
+      <view class="list-item" hover-class="btn-hover" bindtap="dealAdmissionApply">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/deal2.png"></image>
+        </view>
+        <view class="right-text">
+          <text>入驻申请审批</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+    </view>
+
+    <!-- 机构用户注册审批 -->
+    <view class="admin-func" wx:if="{{ userInfo.is_admin }}">
+      <view class="list-item" hover-class="btn-hover" bindtap="dealUserRegisterPage">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/user.png"></image>
+        </view>
+        <view class="right-text">
+          <text>用户注册审核</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
     </view>
   </view>
-  <view class="btn">
-    <button class="adminLoginBtn" open-type="getUserInfo" type="primary" bindtap="handleLogin">登录</button>
-  </view>
-  <view class="adminBtn">
-    <button style="color: black;" type="default" bindtap="toAdminLoginPage">管理员登录</button>
-  </view>
-  <!-- <view class="registeredBtn" bindtap="handleRegistered">
-    <button disabled="{{!showRegister}}" type="default">注册</button>
-  </view> -->
 </view>

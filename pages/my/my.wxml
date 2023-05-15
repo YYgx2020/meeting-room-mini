@@ -1,0 +1,75 @@
+<!--pages/my/my.wxml-->
+<view class="my-page">
+  <!-- 头像展示区域 -->
+  <view class="avatar-container">
+    <view class="left-panel">
+      <image wx:if="{{userInfo.avatar}}" src="{{ userInfo.avatar }}"></image>
+      <image wx:else src="../../static/images/avatar/default.png"></image>
+    </view>
+    <view wx:if="{{login}}" class="right-panel">
+      <view class="name">{{userInfo.name}}</view>
+      <view class="school">{{userInfo.organization_name}}</view>
+      <view class="tag">
+        <text wx:if="{{userInfo.role === 1}}">学生</text>
+        <text wx:if="{{userInfo.role === 2}}">教师</text>
+        <text wx:if="{{userInfo.role === 3}}">企业员工</text>
+        <text wx:if="{{userInfo.role === 4}}">管理员</text>
+      </view>
+    </view>
+    <view wx:else class="no-login-box">
+      <text hover-class="text-hover" bindtap="login">请点击登录</text>
+    </view>
+  </view>
+
+  <!-- 功能列表 -->
+  <view class="func-list">
+    <view class="base-func">
+      <!-- 修改个人信息 -->
+      <view class="list-item" hover-class="btn-hover" bindtap="navChangePage">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/edit.png"></image>
+        </view>
+        <view class="right-text">
+          <text>修改个人信息</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+    </view>
+
+    <!-- 联系客服 -->
+    <button style="width: 100%;" class="button list-item" open-type="contact">
+      <view class="left-icon">
+        <image style="width: 40%; height: 40%" src="../../static/images/func_list/contact.png"></image>
+      </view>
+      <view class="right-text" id="first">
+        <text>联系客服</text>
+        <icon style="font-weight: 100;" class="iconfont icon-xiangyou"></icon>
+      </view>
+    </button>
+    <!-- 意见反馈 -->
+    <button style="width: 100%; margin-top: 0rpx;" class="button list-item" open-type="feedback">
+      <view class="left-icon">
+        <image style="width: 40%; height: 40%" src="../../static/images/func_list/feedback.png"></image>
+      </view>
+      <view class="right-text">
+        <text>意见反馈</text>
+        <icon style="font-weight: 100;" class="iconfont icon-xiangyou"></icon>
+      </view>
+    </button>
+
+    <!-- 退出登录 -->
+    <view class="logout-func">
+      <!-- 申请入驻 -->
+      <view class="list-item" hover-class="btn-hover" bindtap="applyAdmission" bindtap="logout" wx:if="{{login}}">
+        <view class="left-icon">
+          <image style="width: 40%; height: 40%" src="../../static/images/func_list/logout.png"></image>
+        </view>
+        <view class="right-text">
+          <text>退出登录</text>
+          <icon class="iconfont icon-xiangyou"></icon>
+        </view>
+      </view>
+    </view>
+  </view>
+
+</view>

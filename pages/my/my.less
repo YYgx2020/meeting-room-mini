@@ -1,0 +1,153 @@
+.my-page {
+  width: 100vw;
+  height: 100vh;
+  background: #ededed;
+
+  // 头像区域
+  .avatar-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 320rpx;
+    background-color: #fff;
+    padding: 32rpx;
+    box-sizing: border-box;
+
+    .left-panel {
+      width: 150rpx;
+      height: 100%;
+      // border: 1rpx solid red;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+
+      image {
+        width: 140rpx;
+        height: 140rpx;
+        border-radius: 20rpx;
+      }
+    }
+
+    .right-panel {
+      padding-left: 32rpx;
+
+      .name {
+        line-height: 80rpx;
+        font-size: 42rpx;
+        font-weight: 700;
+      }
+
+      .school {
+        font-size: 32rpx;
+        line-height: 80rpx;
+        color: #7b7b7b;
+      }
+
+      .tag {
+        line-height: 80rpx;
+        color: #7b7b7b;
+
+        text {
+          border: 1rpx solid #7b7b7b;
+          padding: 6rpx 16rpx;
+          border-radius: 50rpx;
+        }
+      }
+    }
+
+    .no-login-box {
+      padding: 32rpx;
+      font-size: 44rpx;
+      font-weight: 700;
+    }
+  }
+
+  // 功能列表区域
+  .func-list {
+    margin-top: 20rpx;
+    .base() {
+      background-color: #fff;
+      width: 100vw;
+    }
+
+    .base-func {
+      .base;
+      // margin-bottom: 20rpx;
+    }
+
+    .other-func {
+      .base;
+      // margin-top: 20rpx;
+      // box-sizing: content-box;
+    }
+
+    .logout-func {
+      .base;
+      margin-top: 60rpx;
+    }
+
+    .list-item {
+      line-height: 112rpx;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      .left-icon {
+        height: 112rpx;
+        width: 112rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .right-text {
+        width: calc(100vw - 112rpx);
+        position: relative;
+        text {
+          position: absolute;
+          left: 0rpx;
+          font-weight: 700;
+          font-size: large;
+        }
+        icon {
+          position: absolute;
+          right: 32rpx;
+        }
+      }
+    }
+
+    .button {
+      position: relative;
+      padding: 0;
+      margin-top: -20rpx;  // 这里可能存在样式塌陷问题
+      height: 112rpx;
+      line-height: 112rpx;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      top: 40rpx;
+      background: #ffffff;
+      border: 0;
+      border-radius: 0;
+
+      .right-text {
+        position: relative;
+      }
+
+      #first::after {
+        z-index: 100;
+        position: absolute;
+        content: "";
+        width: 100%;
+        height: 1rpx;
+        background-color: #ededed;
+        bottom: 0rpx;
+        left: 0rpx;
+      }
+    }
+
+    .button::after {
+      border: 0;
+      border-radius: 0;
+    }
+  }
+}

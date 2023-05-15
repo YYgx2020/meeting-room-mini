@@ -1,0 +1,94 @@
+<!--pages/addRoom/addRoom.wxml-->
+<view class="add-room-page">
+  <view class="weui-form">
+    <view class="weui-form__text-area">
+      <view class="weui-form__title">{{title}}</view>
+      <!-- <view wx:if="{{!disabled}}" class="weui-form__desc">
+        <text user-select="{{true}}"><text style="color: red;">*</text>为必填项</text>
+      </view> -->
+    </view>
+
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells">
+          <!-- 添加图片 -->
+          <label class="weui-cell weui-cell_active">
+            <view hover-class="btn-hover" class="required choose-image" wx:if="{{addForm.cover === null}}">
+              <view class="tip1" bindtap="handleChooseImage">
+                <text>+</text>
+              </view>
+              <text class="tip2">选择一张图片</text>
+            </view>
+            <view wx:if="{{addForm.cover}}" class="'show-room-cover' {{disabled ? '' : 'required'}}">
+              <image mode='widthFix' src="{{addForm.cover}}" bindtap="previewImg"></image>
+              <text wx:if="{{!disabled}}" class="rechoose" bindtap="handleChooseImage">重新选择图片</text>
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="'weui-cell__hd' {{disabled ? '' : 'required'}}">
+              <text user-select class="weui-label">编号</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{disabled}}" value="{{addForm.code}}" type="text" id="code" bindinput="handleInput" placeholder="填写会议室编号" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <text user-select class="weui-label">名称</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{disabled}}" value="{{addForm.name}}" type="text" id="name" bindinput="handleInput" placeholder="填写会议室名称" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="'weui-cell__hd' {{disabled ? '' : 'required'}}">
+              <text user-select class="weui-label">地址</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{disabled}}" value="{{addForm.address}}" type="text" id="address" bindinput="handleInput" placeholder="填写会议室地址" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="'weui-cell__hd' {{disabled ? '' : 'required'}}">
+              <text user-select class="weui-label">管理员</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{disabled}}" value="{{addForm.contact}}" type="text" id="contact" bindinput="handleInput" placeholder="填写管理员姓名" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="'weui-cell__hd' {{disabled ? '' : 'required'}}">
+              <text user-select class="weui-label">电话</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{disabled}}" value="{{addForm.phone}}" type="number" id="phone" bindinput="handleInput" maxlength="11" placeholder="填写管理员电话" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="'weui-cell__hd' {{disabled ? '' : 'required'}}">
+              <text user-select class="weui-label">人数</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{disabled}}" value="{{addForm.number}}" type="number" id="number" bindinput="handleInput" maxlength="4" placeholder="填写会议室可容纳人数" />
+            </view>
+          </label>
+        </view>
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">会议室简介</view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active">
+              <view class="weui-cell__bd">
+                <textarea wx:if="{{!disabled}}" disabled="{{disabled}}" value="{{addForm.desc}}" id="desc" bindinput="handleInput" class="weui-textarea" cols="30" rows="10" placeholder="输入会议室的描述信息"></textarea>
+                <text wx:if="{{disabled}}">{{(addForm.desc === null || addForm.desc === '') ? '无' : addForm.desc}}</text>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-form__opr-area">
+      <a wx:if="{{!disabled}}" class="weui-btn weui-btn_primary" bindtap="handleSubmit">确定</a>
+    </view>
+  </view>
+</view>

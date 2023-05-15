@@ -1,0 +1,73 @@
+<!--pages/newAppoint/newAppoint.wxml-->
+<view class="new-appoint-page">
+  <view class="weui-form">
+    <view class="weui-form__text-area">
+      <view class="weui-form__title">新建预约</view>
+    </view>
+
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells">
+          <label class="weui-cell weui-cell_active">
+            <view class="required weui-cell__hd">
+              <text class="weui-label">预约人</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input value="{{submitForm.contact}}" type="text" id="contact" placeholder="填写预约人姓名" class="weui-input" bindinput="handleInput" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="required weui-cell__hd">
+              <text class="weui-label">联系电话</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input value="{{submitForm.phone}}" type="number" maxlength="11" id="phone" placeholder="填写联系电话" class="weui-input" bindinput="handleInput" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <text class="weui-label">开始时间</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{true}}" type="text" id="phone" value="12:00" class="weui-input" bindinput="handleInput" />
+            </view>
+          </label>
+          <label class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <text class="weui-label">结束时间</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input disabled="{{true}}" type="text" id="phone" value="14:00" class="weui-input" bindinput="handleInput" />
+            </view>
+          </label>
+        </view>
+        <view class="weui-cells__group weui-cells__group_form">
+          <view class="weui-cells__title">申请理由</view>
+          <view class="weui-cells weui-cells_form">
+            <view class="weui-cell weui-cell_active">
+              <view class="weui-cell__bd">
+                <textarea id="reason" bindinput="handleInput" class="weui-textarea" cols="30" rows="10" placeholder="填写申请理由"></textarea>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-form__tips-area" style="text-align: left;">
+      <view class="tips_item">
+        <text class="weui-form__tips">提示：</text>
+      </view>
+      <view class="tips_item">
+        <text class="weui-form__tips">1.可预约的时间段为08:00-22:00，一个时间段为2个小时;</text>
+      </view>
+      <view class="tips_item">
+        <text user-select="{{true}}" class="weui-form__tips">2.当前预约的会议室为<text user-select="{{true}}" class="font" decode="{{true}}">&nbsp;{{room}}</text>，日期为<text user-select="{{true}}" class="font" decode="{{true}}">&nbsp;{{date}}</text>,预约的时间段为<text class="font" user-select="{{true}}" decode="{{true}}">&nbsp;{{time}}</text>;</text>
+      </view>
+    </view>
+
+    <view class="weui-form__opr-area">
+      <a wx:if="{{!disabled}}" class="weui-btn weui-btn_primary" bindtap="handleSubmit">确定</a>
+    </view>
+  </view>
+</view>

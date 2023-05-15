@@ -1,0 +1,64 @@
+<!--pages/forget/forget.wxml-->
+<view class="forget-page">
+  <view class="weui-form">
+    <view class="weui-form__text-area">
+      <view class="weui-form__title">重置密码</view>
+    </view>
+    <view class="weui-form__control-area">
+      <view class="weui-cells__group weui-cells__group_form">
+        <view class="weui-cells">
+          <!-- 手机号 -->
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <label class="required weui-label">手机号</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input type="number" value="{{resetForm.phone}}" id="phone" bindinput="handleInput" placeholder="请填写您的手机号" />
+            </view>
+          </view>
+          <!-- 新密码 -->
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <label class="required weui-label">新密码</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input type="password" value="{{resetForm.password}}" id="password" bindinput="handleInput" placeholder="请填写您的新密码" />
+            </view>
+          </view>
+          <!-- 确认密码 -->
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <label class="required weui-label">确认密码</label>
+            </view>
+            <view class="weui-cell__bd">
+              <input type="password" value="{{resetForm.verifyPwd}}" id="verifyPwd" bindblur="handleInput2" placeholder="请确认您的新密码" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <text class="required weui-label">邮箱</text>
+            </view>
+            <view class="weui-cell__bd">
+              <input type="text" id="email" bindinput="handleInput" maxlength="30" value="{{resetForm.email}}" id="email" class="weui-input" placeholder="请填写您的邮箱" />
+            </view>
+          </view>
+          <view class="weui-cell weui-cell_active">
+            <view class="weui-cell__hd">
+              <text class="required weui-label" style="max-width: 5.4em;margin-right: 0;">邮箱验证码</text>
+            </view>
+            <view class="weui-cell__bd weui-flex">
+              <input type="number" bindinput="handleInput" value="{{resetForm.verifyCode}}" id="verifyCode" maxlength="6" class="weui-input" placeholder="填写验证码" />
+            </view>
+            <button role="button" id="js_btn_vcode" class="js_target weui-cell__control weui-btn weui-btn_default weui-vcode-btn" style="line-height: 88rpx; margin: 0rpx;" bindtap="getCode">
+              {{ canSendCode ? captchaTime + "秒后重试" : "获取验证码" }}
+            </button>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 重置按钮 -->
+    <view class="weui-form__opr-area">
+      <a href="" role="button" class="{{ fillout ? 'weui-btn weui-btn_primary' : 'weui-btn weui-btn_primary weui-btn_disabled'}}" bindtap="submitRegister">重置密码</a>
+    </view>
+  </view>
+</view>

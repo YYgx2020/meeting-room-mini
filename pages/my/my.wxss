@@ -1,0 +1,127 @@
+.my-page {
+  width: 100vw;
+  height: 100vh;
+  background: #ededed;
+}
+.my-page .avatar-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 320rpx;
+  background-color: #fff;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+.my-page .avatar-container .left-panel {
+  width: 150rpx;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.my-page .avatar-container .left-panel image {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 20rpx;
+}
+.my-page .avatar-container .right-panel {
+  padding-left: 32rpx;
+}
+.my-page .avatar-container .right-panel .name {
+  line-height: 80rpx;
+  font-size: 42rpx;
+  font-weight: 700;
+}
+.my-page .avatar-container .right-panel .school {
+  font-size: 32rpx;
+  line-height: 80rpx;
+  color: #7b7b7b;
+}
+.my-page .avatar-container .right-panel .tag {
+  line-height: 80rpx;
+  color: #7b7b7b;
+}
+.my-page .avatar-container .right-panel .tag text {
+  border: 1rpx solid #7b7b7b;
+  padding: 6rpx 16rpx;
+  border-radius: 50rpx;
+}
+.my-page .avatar-container .no-login-box {
+  padding: 32rpx;
+  font-size: 44rpx;
+  font-weight: 700;
+}
+.my-page .func-list {
+  margin-top: 20rpx;
+}
+.my-page .func-list .base-func {
+  background-color: #fff;
+  width: 100vw;
+}
+.my-page .func-list .other-func {
+  background-color: #fff;
+  width: 100vw;
+}
+.my-page .func-list .logout-func {
+  background-color: #fff;
+  width: 100vw;
+  margin-top: 60rpx;
+}
+.my-page .func-list .list-item {
+  line-height: 112rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+.my-page .func-list .list-item .left-icon {
+  height: 112rpx;
+  width: 112rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.my-page .func-list .list-item .right-text {
+  width: calc(100vw - 112rpx);
+  position: relative;
+}
+.my-page .func-list .list-item .right-text text {
+  position: absolute;
+  left: 0rpx;
+  font-weight: 700;
+  font-size: large;
+}
+.my-page .func-list .list-item .right-text icon {
+  position: absolute;
+  right: 32rpx;
+}
+.my-page .func-list .button {
+  position: relative;
+  padding: 0;
+  margin-top: -20rpx;
+  height: 112rpx;
+  line-height: 112rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  top: 40rpx;
+  background: #ffffff;
+  border: 0;
+  border-radius: 0;
+}
+.my-page .func-list .button .right-text {
+  position: relative;
+}
+.my-page .func-list .button #first::after {
+  z-index: 100;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 1rpx;
+  background-color: #ededed;
+  bottom: 0rpx;
+  left: 0rpx;
+}
+.my-page .func-list .button::after {
+  border: 0;
+  border-radius: 0;
+}

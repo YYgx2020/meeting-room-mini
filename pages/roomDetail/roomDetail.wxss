@@ -1,0 +1,216 @@
+.room-detail-page {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bgColor1);
+  /* 蒙版背景 */
+  /* 底部处理预约弹窗 */
+}
+.room-detail-page .header-room-info {
+  position: relative;
+  width: 100%;
+  height: 112rpx;
+  line-height: 112rpx;
+  background-color: #ffffff;
+  padding: 0rpx 32rpx;
+  box-sizing: border-box;
+  display: flex;
+}
+.room-detail-page .header-room-info .code {
+  flex: 1;
+  align-self: flex-start;
+  font-size: 48rpx;
+  color: black;
+  font-weight: 700;
+}
+.room-detail-page .header-room-info .title {
+  flex: 2;
+  align-self: center;
+  font-size: 36rpx;
+  color: black;
+  font-weight: 700;
+  text-align: center;
+}
+.room-detail-page .header-room-info .more {
+  flex: 1;
+  align-self: flex-end;
+  font-size: 32rpx;
+  color: #b2b2b2;
+}
+.room-detail-page .appoint-box {
+  position: relative;
+  top: 10rpx;
+  width: 100%;
+  transition: 0.3s linear;
+  height: calc(100vh - 112rpx - 10rpx);
+  background: #ffffff;
+}
+.room-detail-page .appoint-box .scroll-nav {
+  position: relative;
+  width: 100vw;
+  display: flex;
+  white-space: nowrap;
+  height: 60rpx;
+}
+.room-detail-page .appoint-box .scroll-nav ::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.room-detail-page .appoint-box .scroll-nav .nav-item {
+  padding: 0 40rpx;
+  font-size: 32rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  box-sizing: border-box;
+}
+.room-detail-page .appoint-box .scroll-nav .nav-item .nav-content {
+  height: 60rpx;
+  box-sizing: border-box;
+}
+.room-detail-page .appoint-box .scroll-nav .active {
+  color: #07c160;
+  border-bottom: 3rpx solid #07c160;
+}
+.room-detail-page .appoint-box .swiper-container {
+  position: absolute;
+  /* margin-top: 10rpx; */
+  width: 100%;
+  height: calc(100vh - 112rpx - 60rpx - 10rpx);
+  background: #ffffff;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list {
+  position: relative;
+  /* top: 20rpx; */
+  /* 控制滑动区域的高度 */
+  height: calc(100vh - 190rpx);
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .ban {
+  background: #f7f7f7;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item {
+  z-index: 10rpx;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  height: 120rpx;
+  /* 待处理预约提示信息 */
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .fontClass {
+  color: #adadad;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .time {
+  position: absolute;
+  width: 270rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: left;
+  left: 40rpx;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .time text {
+  font-size: 40rpx;
+  font-weight: 500;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .time .startTime {
+  position: absolute;
+  width: 120rpx;
+  text-align: center;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .time .connector {
+  position: absolute;
+  width: 30rpx;
+  text-align: center;
+  left: 120rpx;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .time .endTime {
+  position: absolute;
+  left: 150rpx;
+  width: 120rpx;
+  text-align: center;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .status {
+  position: absolute;
+  width: 20%;
+  right: 40rpx;
+  height: 120rpx;
+  text-align: center;
+  line-height: 120rpx;
+  font-size: 40rpx;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .status .kongxian {
+  color: #07c160;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .status .appointed {
+  color: #fa9d3b;
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .toBeProcessed {
+  position: absolute;
+  right: 55rpx;
+  top: 20rpx;
+  width: 20rpx;
+  height: 20rpx;
+  background: red;
+  border-radius: 50%;
+  /* border: 1rpx solid red; */
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item .toRightIcon {
+  position: absolute;
+  right: 20rpx;
+  width: 40rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  color: #adadad;
+  /* top: 50%; */
+}
+.room-detail-page .appoint-box .swiper-container .date-appoint-list .appoint-item::after {
+  position: absolute;
+  left: 50%;
+  margin-left: -44%;
+  bottom: 0;
+  content: '';
+  width: 88%;
+  height: 1rpx;
+  background-color: #ededed;
+}
+.room-detail-page .background-over {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.597;
+  overflow: hidden;
+  z-index: 20;
+  background: black;
+}
+.room-detail-page .handleReservation {
+  display: flex;
+  padding-top: 40rpx;
+  flex-direction: column;
+  align-items: center;
+  z-index: 20;
+  position: absolute;
+  background: #ffffff;
+  /* bottom: -976rpx; */
+  width: 100%;
+  height: 800rpx;
+  /* border: 1rpx solid red; */
+  border-radius: 20rpx;
+  /* transition: bottom 0.3s linear; */
+}
+.room-detail-page .handleReservation .headTip {
+  position: relative;
+  padding-left: 50rpx;
+  width: calc(100% - 50rpx);
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: left;
+}
+.room-detail-page .handleReservation .headTip text {
+  font-size: 32rpx;
+  color: #191919;
+  font-weight: 700;
+}
+.room-detail-page .handleReservation text {
+  font-size: 32rpx;
+}
