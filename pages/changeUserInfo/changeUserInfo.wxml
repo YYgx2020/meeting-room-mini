@@ -1,0 +1,16 @@
+<!--pages/changeUserInfo/changeUserInfo.wxml-->
+<view class="change-user-info">
+  <view class="user-info">
+    <view class="label">
+      <text wx:if="{{key === 'name'}}">姓名</text>
+      <text wx:if="{{key === 'email'}}">邮箱</text>
+    </view>
+    <view class="input">
+      <input type="text" value="{{value}}" bindinput="handleInput"/>
+    </view>
+  </view>
+
+  <view class="operation">
+    <button type="primary" bindtap="changeUserInfo">修改</button>
+  </view>
+</view>

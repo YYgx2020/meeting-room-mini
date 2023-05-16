@@ -4,7 +4,7 @@
     <view class="title">
       <text>审核记录</text>
     </view>
-    <view class="search-icon iconfont icon-sousuo" bindtap="navSearchPage"></view>
+    <!-- <view class="search-icon iconfont icon-sousuo" bindtap="navSearchPage"></view> -->
   </view>
   <block wx:if="{{ !showSearch }}">
     <!-- 分类导航 -->

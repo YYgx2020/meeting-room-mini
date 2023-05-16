@@ -13,6 +13,8 @@ Page({
     date: null,
     time: null,
     timestamp: null,
+    start_time: null,
+    end_time: null,
   },
 
   /**
@@ -25,6 +27,8 @@ Page({
       date: options.date,
       time: options.time,
       timestamp: options.timestamp,
+      start_time: options.time.split('-')[0],
+      end_time: options.time.split('-')[1],
     });
   },
 

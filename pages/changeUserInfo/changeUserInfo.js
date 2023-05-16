@@ -1,34 +1,50 @@
-// pages/personal/personal.js
+// pages/changeUserInfo/changeUserInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: null,
+    key: null,
+    value: null,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.setData({
+      key: options.key,
+      value: options.value,
+    });
   },
 
-  navToChangeUserInfoPage(e) {
-    console.log(e);
-    const key = e.currentTarget.id;
-    const value = e.currentTarget.dataset.value;
-    wx.navigateTo({
-      url: `/pages/changeUserInfo/changeUserInfo?key=${key}&value=${value}`,
+  handleInput(e) {
+    this.setData({
+      value: e.detail.value,
     })
   },
 
-  navToForgetPasswordPage() {
-    // 跳转到修改密码页面
-    wx.navigateTo({
-      url: '/pages/forget/forget',
+  changeUserInfo() {
+    const {key, value} = this.data;
+    wx.showLoading({
+      title: '更新中',
+    })
+    const data = {
+      id: wx.$userInfo.id,
+      key,
+      value,
+    }
+    wx.$api.user.updateUserInfo(data).then(res => {
+      console.log(res);
+      wx.$userInfo = res.data.result;
+      wx.navigateBack({
+        delta: 1,
+      })
     })
   },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -41,9 +57,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.setData({
-      userInfo: wx.$userInfo,
-    })
+
   },
 
   /**

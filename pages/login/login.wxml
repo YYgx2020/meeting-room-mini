@@ -22,10 +22,11 @@
               <text class="weui-label">密码</text>
             </view>
             <view class="weui-cell__bd">
-              <input id="password" bindinput="handleInput" type="password" maxlength="10" class="weui-input" placeholder="请输入您的密码" />
+              <input id="password" bindinput="handleInput" type="{{type}}" maxlength="10" class="weui-input" placeholder="请输入您的密码" />
             </view>
             <view class="weui-cell__ft">
-              <icon style="font-size: 48rpx;" class="iconfont icon-yanjing"></icon>
+              <icon style="font-size: 48rpx;" class="iconfont icon-yanjing" wx:if="{{showEye}}" bindtap="lookPassword"></icon>
+              <icon style="font-size: 48rpx;" class="iconfont icon-biyanjing" wx:if="{{!showEye}}" bindtap="lookPassword"></icon>
             </view>
           </label>
         </view>

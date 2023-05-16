@@ -1,0 +1,29 @@
+.change-user-info .user-info {
+  width: 100vw;
+  padding: 32rpx;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+}
+.change-user-info .user-info .label {
+  min-width: 5em;
+  font-size: 36rpx;
+}
+.change-user-info .user-info .input {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 36rpx;
+}
+.change-user-info .user-info::after {
+  content: '';
+  position: absolute;
+  bottom: 0rpx;
+  left: 32rpx;
+  width: calc(100vw - 32rpx);
+  height: 1rpx;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.change-user-info .operation {
+  margin-top: 32rpx;
+}

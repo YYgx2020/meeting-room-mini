@@ -1,2 +1,54 @@
 <!--pages/personal/personal.wxml-->
-<text>pages/personal/personal.wxml</text>
+<view class="personal-page">
+  <view class="info-item">
+    <view class="item__label">
+      <text>机构</text>
+    </view>
+    <view class="item_content">
+      <text>{{userInfo.organization_name}}</text>
+    </view>
+  </view>
+  <view class="info-item" wx:if="{{userInfo.role === 1}}">
+    <view class="item__label">
+      <text>学号</text>
+    </view>
+    <view class="item_content">
+      <text>{{userInfo.number}}</text>
+    </view>
+  </view>
+  <view class="info-item" id="name" data-label="{{userInfo.name}}" data-value="{{userInfo.name}}" bindtap="navToChangeUserInfoPage">
+    <view class="item__label">
+      <text>姓名</text>
+    </view>
+    <view class="item_content">
+      <text>{{userInfo.name}}</text>
+      <text class="iconfont icon-xiangyou"></text>
+    </view>
+  </view>
+  <view class="info-item">
+    <view class="item__label">
+      <text>电话</text>
+    </view>
+    <view class="item_content">
+      <text>{{userInfo.phone}}</text>
+    </view>
+  </view>
+  <view class="info-item" id="email" data-label="{{userInfo.email}}"  data-value="{{userInfo.email}}" bindtap="navToChangeUserInfoPage">
+    <view class="item__label">
+      <text>邮箱</text>
+    </view>
+    <view class="item_content">
+      <text>{{userInfo.email}}</text>
+      <text class="iconfont icon-xiangyou"></text>
+    </view>
+  </view>
+  <view class="info-item" bindtap="navToForgetPasswordPage">
+    <view class="item__label">
+      <text>密码</text>
+    </view>
+    <view class="item_content">
+      <text>******</text>
+      <text class="iconfont icon-xiangyou"></text>
+    </view>
+  </view>
+</view>

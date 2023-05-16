@@ -6,7 +6,7 @@
         <text decode>以下是<text>{{code}}</text>&nbsp;&nbsp;<text>{{date}}</text>&nbsp;&nbsp;<text>{{time}}</text>的预约记录
         </text>
       </view>
-      <view style="margin-top: 6px;">
+      <view style="margin-top: 6px;" wx:if="{{currentAppointList.length !== 1}}">
         <text>当前预约消息是存在冲突的，您需要筛选优先级最高的预约申请，当点击某一条通过之后，其他预约消息将会被视为不通过</text>
       </view>
     </view>

@@ -64,6 +64,14 @@ const user = {
       data,
     })
   },
+
+  updateUserInfo(data) {
+    return request({
+      url: '/api/user/updateUserInfo',
+      method: POST,
+      data,
+    })
+  }
 }
 
 export default user;

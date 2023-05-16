@@ -34,13 +34,17 @@ Page({
     // console.log(currentAppointList);
     console.log(options);
     if (options.entry == "handleAppointment") {
-      console.log(options);
+      // console.log(options);
       this.setData({
-        date: options.date,
+        code: options.code,
+        date: dayjs(new Date(options.date * 1)).format('MM月DD日'),
         room_id: options.room_id,
         start_time: options.start_time,
         end_time: options.end_time,
+        time: options.start_time + '-' + options.end_time,
+        timeStamp: options.date,
       })
+      this.initData1();
     } else {
       this.setData({
         // currentAppointList,
@@ -49,15 +53,23 @@ Page({
         time: options.time,
         timestamp: options.timestamp,
       });
+      this.initData2();
     }
+    // if (this.data.entry === 'handleAppointment') {
+    //   this.initData1();
+    // } else {
+    //   this.initData2();
+    // }
   },
 
   initData1() {
     const data = {
-      date: this.data.timestamp,
-      start_time: this.data.time.split("-")[0],
-      end_time: this.data.time.split("-")[1],
+      room_id: this.data.room_id,
+      date: this.data.timeStamp,
+      start_time: this.data.start_time,
+      end_time: this.data.end_time,
     };
+    console.log('data: ', data);
     wx.$api.userAppoint.getApproval(data).then((res) => {
       console.log(res);
       const currentAppointList = res.data.result.rows.map((item) => {
@@ -79,17 +91,16 @@ Page({
 
   initData2() {
     const {
-      date,
-      room_id,
-      start_time,
-      end_time
+      timestamp,
+      time,
     } = this.data;
     const queryData = {
-      date,
-      room_id,
-      start_time,
-      end_time
+      date: timestamp,
+      room_id: wx.$currentRoomInfo.id,
+      start_time: time.split('-')[0],
+      end_time: time.split('-')[1],
     }
+    console.log(queryData);
     wx.$api.userAppoint.getConflictAppointRecord(queryData).then(res => {
       console.log(res);
       const currentAppointList = res.data.result.rows.map((item) => {
@@ -104,9 +115,9 @@ Page({
         return item;
       });
       this.setData({
-        code: res.data.result.rows[0].roomInfo.code,
-        time: start_time + '-' + end_time,
-        date: dayjs(date * 1).format('YYYY年MM月DD日'),
+        // code: res.data.result.rows[0].roomInfo.code,
+        // time: start_time + '-' + end_time,
+        // date: dayjs(date * 1).format('YYYY年MM月DD日'),
         currentAppointList
       })
     })
@@ -240,11 +251,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    if (this.data.entry === 'handleAppointment') {
-      this.initData1();
-    } else {
-      this.initData2();
-    }
   },
 
   /**

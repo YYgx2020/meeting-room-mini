@@ -1,147 +1,127 @@
 .search-page {
-
-  background-color: var(--bgColor1);
-  width: 100vw;
+  background-color: #ededed;
   height: 100vh;
 
-  // 头部搜索框
-  .search-bar__box {
-    height: 110rpx;
-    // line-height: 84rpx;
-    padding: 0 32rpx;
-    background: var(--bgColor1);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+  .search-box {
+    width: 100vw;
+    height: 100%;
+    padding-top: 42rpx;
+    box-sizing: border-box;
 
-    // 搜索输入框
-    .search-left-input-label {
-      width: calc(100vw - 68rpx - 96rpx);
-      height: 64rpx;
-      line-height: 64rpx;
-      background-color: var(--bgColor2);
-      padding: 0rpx 12rpx;
-      box-sizing: border-box;
-      border-radius: 8rpx;
+    .conditional-search-bar {
+      // margin-top: 42rpx;
+      padding: 0rpx 32rpx;
+      
+      .title-tip {
+        line-height: 64rpx;
+        font-size: 30rpx;
+        color: rgba(0, 0, 0, .6);
+      }
+
+      .search-bar__item {
+        padding: 32rpx 0rpx;
+        width: 100%;
+        // border-bottom: 1rpx solid #c4c4c4;
+        border-bottom: 1rpx solid rgba(0, 0, 0, .1);
+        display: flex;
+        flex-direction: row;
+        // text-align: center;
+        align-items: center;
+        // line-height: 54rpx;
+        // font-size: 32rpx;
+        .item__hd {
+          width: 280rpx;
+        }
+
+        .item__bd {
+          width: calc(100% - 280rpx);
+        }
+      }
+    }
+  }
+
+  .search-result {
+    padding-top: 64rpx;
+    .result-item {
+      width: 100%;
+      height: 144rpx;
+      line-height: 144rpx;
       display: flex;
       flex-direction: row;
+      // justify-content: space-between;
       align-items: center;
-      position: relative;
-
-      .search-input {
-        // line-height: 64rpx;
-        padding-left: 12rpx;
-        width: calc(100% - 80rpx);
-        line-height: 1;
-      }
-
-      .cancel-icon {
-        text-align: center;
-        width: 44rpx;
-        height: 63rpx;
-        line-height: 1;
-        z-index: 100;
-        position: absolute;
-        right: 0rpx;
-        color: #0303037c;
-      }
-    }
-
-    // 搜索按钮
-    .search-btn {
-      width: 96rpx;
-      text-align: center;
-      font-weight: 700;
-      // color: #576b95;
-      color: var(--linkTextColor);
-    }
-  }
-
-  // 按日期检索
-  .date-search-panel {
-    width: 100vw;
-    height: 88rpx;
-    line-height: 88rpx;
-    text-align: center;
-    color: var(--linkTextColor);
-  }
-
-  // 展示日期提示
-  .date-tip-text-box {
-    width: 100vw;
-    height: 88rpx;
-    line-height: 88rpx;
-    // color: var(--linkTextColor);
-    padding: 0 32rpx;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: space-between;
-
-    .__right {
-      color: var(--linkTextColor);
-    }
-  }
-
-  .search-result__scroll {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    .meeting-room-item {
-      width: calc(100vw - 64rpx);
-      background-color: var(--bgColor2);
-      padding-bottom: 32rpx;
-      margin-top: 32rpx;
-      border-radius: 12rpx;
+      padding: 12rpx 32rpx;
       box-sizing: border-box;
-      display: flex;
-      flex-direction: column;
-
-      .room-cover {
-        width: 100%;
-        height: 300rpx;
-
+      // margin-top: 16rpx;
+      background-color: #fff;
+      position: relative;
+      .cover {
+        width: 96rpx;
+        height: 96rpx;
         image {
-          border-top-left-radius: 12rpx;
-          border-top-right-radius: 12rpx;
           width: 100%;
           height: 100%;
+          border-radius: 8rpx;
         }
       }
 
-      .item-content {
-        padding-top: 16rpx;
+      .room-info {
         padding-left: 32rpx;
-        display: flex;
-        flex-direction: column;
-
-        .label {
-          line-height: 64rpx;
-          display: flex;
-          align-items: center;
-
-          .label-icon {
-            color: #595959;
-          }
-
-          text {
-            padding-left: 8rpx;
-            font-size: 36rpx;
-          }
+        // display: flex;
+        .name {
+          line-height: 60rpx;
+          font-weight: 700;
+          font-size: 36rpx;
         }
 
-        // .number {
-        //   height: 64rpx;
-        //   display: flex;
-        //   align-items: center;
-        //   .label-icon {
-        //     color: #595959;
-        //     line-height: 50rpx;
-        //   }
-        //   text {
-        //     font-size: 36rpx;
-        //   }
-        // }
+        .address {
+          line-height: 60rpx;
+          color: rgba(0, 0, 0, .8);
+        }
       }
+
+      .number {
+        padding-left: 32rpx;
+        height: 144rpx;
+      }
+
+      .status {
+        font-size: 42rpx;
+        position: absolute;
+        right: 32rpx;
+        // position: relative;
+        // .wait {
+        //   position: absolute;
+        //   width: 10rpx;
+        //   height: 10rpx;
+        //   background-color: red;
+        //   border-radius: 5rpx;
+        // }
+        .wait {
+          position: relative;
+        }
+
+        .wait::after {
+          content: '';
+          position: absolute;
+          top: -8rpx;
+          right: -8rpx;
+          width: 16rpx;
+          height: 16rpx;
+          background-color: red;
+          border-radius: 8rpx;
+        }
+      }
+    }
+
+    .result-item::after {
+      content: '';
+      position: absolute;
+      width: 80%;
+      height: 1rpx;
+      background-color: rgba(0, 0, 0, .1);
+      bottom: 0rpx;
+      left: 20%;
     }
   }
 }

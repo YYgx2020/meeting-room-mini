@@ -46,8 +46,18 @@ Page({
     } else {
       if (timer) clearTimeout(timer);
       // if (value)
-      timer = setTimeout(() => {
+      timer = setTimeout(async () => {
         console.log('发送请求，关键词：', this.data.keyWord);
+        try {
+          const data = {
+            user_id: wx.$userInfo.id,
+            keyWord: this.data.keyWord,
+          }
+          const res = await wx.$api.userAppoint.searchByKeyWord(data);
+          console.log(res);
+        } catch (error) {
+          console.log(error);
+        }
       }, 500);
       this.setData({
         keyWord: e.detail.value,

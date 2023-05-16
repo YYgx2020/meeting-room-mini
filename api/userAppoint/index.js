@@ -79,6 +79,16 @@ const userAppoint = {
       data,
     })
   },
+
+  // 模糊查询（根据联系人、电话、原因，不通过原因）
+  searchByKeyWord(data) {
+    return request({
+      url: '/api/userAppoint/searchByKeyWord',
+      method: GET,
+      data,
+    });
+  }
+
 }
 
 export default userAppoint;

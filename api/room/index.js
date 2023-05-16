@@ -37,6 +37,14 @@ const room = {
       data,
     })
   },
+
+  getConditionalQuery(data) {
+    return request({
+      url: '/api/room/getConditionalQuery',
+      method: GET,
+      data,
+    })
+  }
 }
 
 export default room;

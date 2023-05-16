@@ -4,7 +4,7 @@
     <view class="title">
       <text>审核记录</text>
     </view>
-    <view class="search-icon iconfont icon-sousuo" bindtap="navSearchPage"></view>
+    <!-- <view class="search-icon iconfont icon-sousuo" bindtap="navSearchPage"></view> -->
   </view>
   <block wx:if="{{ !showSearch }}">
     <!-- 分类导航 -->
@@ -127,7 +127,7 @@
             <text user-select="true">{{item.approval_time}}</text>
           </view>
         </view>
-        <view class="list-item__cell">
+        <view class="list-item__cell" wx:if="{{item.is_pass === 2}}">
           <view class="list-item__title">不通过缘由</view>
           <view class="list-item__content">{{item.no_pass_reason ? item.no_pass_reason : '无'}}</view>
         </view>

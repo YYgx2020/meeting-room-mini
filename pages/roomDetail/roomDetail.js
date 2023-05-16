@@ -335,7 +335,7 @@ Page({
           const date = dateList[current].date;
           const time = item.time.startTime + "-" + item.time.endTime;
           wx.navigateTo({
-            url: `/pages/handleAppointItem/handleAppointItem?date=${date}&time=${time}&timestamp=${dateList[current].timeStamp}`,
+            url: `/pages/handleAppointItem/handleAppointItem?date=${date}&time=${time}&timestamp=${dateList[current].timeStamp}&entry=roomDetail`,
           });
         } else {
           const date = dateList[current].date;

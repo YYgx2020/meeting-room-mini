@@ -7,22 +7,24 @@ Page({
   data: {
     // roles: ['学生', '教师', '企业员工', '其他用户'],
     roles: [{
-      id: 1,
-      value: '学生',
-      checked: true,
-    }, {
-      id: 2,
-      value: '教师',
-      checked: false,
-    }, {
-      id: 3,
-      value: '企业员工',
-      checked: false,
-    }, {
-      id: 4,
-      value: '其他用户',
-      checked: false,
-    }],
+        id: 1,
+        value: '学生',
+        checked: true,
+      }, {
+        id: 2,
+        value: '教师',
+        checked: false,
+      }, {
+        id: 3,
+        value: '企业员工',
+        checked: false,
+      },
+      // {
+      //   id: 4,
+      //   value: '其他用户',
+      //   checked: false,
+      // }
+    ],
     selected: '学生',
     selectedCode: 1,
   },

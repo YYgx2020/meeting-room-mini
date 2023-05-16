@@ -1,0 +1,29 @@
+.personal-page {
+  .info-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 32rpx;
+    box-sizing: border-box;
+    font-size: 36rpx;
+    position: relative;
+
+    .item_content {
+      color: rgba(0, 0, 0, .6);
+      text:nth-child(2) {
+        padding-left: 12rpx;
+      }
+    }
+  }
+
+  .info-item::after {
+    content: '';
+    position: absolute;
+    width: calc(100vw - 32rpx);
+    left: 32rpx;
+    height: 1rpx;
+    background-color: rgba(0, 0, 0, 0.1);
+    bottom: 0rpx;
+  }
+}

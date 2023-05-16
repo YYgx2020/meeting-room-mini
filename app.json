@@ -22,7 +22,8 @@
     "pages/roomInfo/roomInfo",
     "pages/newAppoint/newAppoint",
     "pages/handleAppointItem/handleAppointItem",
-    "pages/roomList/components/search/search"
+    "pages/roomList/components/search/search",
+    "pages/changeUserInfo/changeUserInfo"
   ],
   "window": {
     "backgroundTextStyle": "light",

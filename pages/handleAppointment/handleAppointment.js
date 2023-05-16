@@ -351,6 +351,7 @@ Page({
     // console.log(e);
     this.setData({
       scrollTop1: e.detail.scrollTop,
+      scrollTop2: e.detail.scrollTop,
     });
   },
 
@@ -366,6 +367,7 @@ Page({
           console.log(rect);
           this.setData({
             scrollTop1: rect.height + 200,
+            scrollTop2: rect.height + 200,
           });
         })
         .exec();
@@ -393,6 +395,7 @@ Page({
       id: currentItem.id,
       is_pass: 1,
       phone: currentItem.phone,
+      approval_time: new Date(),
     };
     const queryData = {
       date: currentItem.date,
@@ -407,7 +410,7 @@ Page({
         if (res.data.result.rows.length != 1) {
           // 跳转到 handleAppointItem 页面
           wx.navigateTo({
-            url: `/pages/handleAppointItem/handleAppointItem?entry=handleAppointment&date=${queryData.date}&room_id=${queryData.room_id}&start_time=${queryData.start_time}&end_time=${queryData.end_time}`,
+            url: `/pages/handleAppointItem/handleAppointItem?entry=handleAppointment&date=${queryData.date}&code=${currentItem.roomInfo.code}&room_id=${queryData.room_id}&start_time=${queryData.start_time}&end_time=${queryData.end_time}`,
           });
         } else {
           wx.showModal({
@@ -418,6 +421,31 @@ Page({
             success: async res1 => {
               if (res1.confirm) {
                 console.log('更新单条数据：', res1.content);
+                Object.assign(data, {password: res1.content});
+                wx.$api.userAppoint.update(data).then(res => {
+                  console.log(res);
+                  const sendData = {
+                    openid: currentItem.user_openid,
+                    content: '会议室预约审核结果',
+                    result: '通过',
+                    name: wx.$userInfo.name,
+                    phone: wx.$userInfo.phone,
+                  }
+                  wx.cloud.callFunction({
+                    name: 'sendMsg',
+                    data: {
+                      openid: currentItem.user_openid,
+                      templateId: wx.$msg2(sendData).templateId,
+                      data: wx.$msg2(sendData).data,
+                    }
+                  }).then(res2 => {
+                    console.log("推送消息成功", res2);
+                    // 发送订阅消息（审核结果通知）
+                  }).catch(err2 => {
+                    console.log("推送消息失败", err2);
+                  });
+                  this.getuserAppointList();
+                })
               }
             }
           });

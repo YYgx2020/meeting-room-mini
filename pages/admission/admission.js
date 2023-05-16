@@ -110,13 +110,13 @@ Page({
     }
     wx.$api.organization.refresh(data).then(res => {
       console.log(res);
-      if (res.data.result.length === 0) {
+      if (res.data.result.rows.length === 0) {
         wx.showToast({
           title: '没有更多了',
           icon: 'none'
         })
       } else {
-        let newData = JSON.parse(JSON.stringify(res.data.result));
+        let newData = JSON.parse(JSON.stringify(res.data.result.rows));
         newData = newData.reverse().map(item => {
           item.createdAt = dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss');
           return item;
@@ -159,13 +159,13 @@ Page({
     }
     wx.$api.organization.refresh(data).then(res => {
       console.log(res);
-      if (res.data.result.length === 0) {
+      if (res.data.result.rows.length === 0) {
         wx.showToast({
           title: '没有更多了',
           icon: 'none'
         })
       } else {
-        let newData = JSON.parse(JSON.stringify(res.data.result));
+        let newData = JSON.parse(JSON.stringify(res.data.result.rows));
         newData = newData.reverse().map(item => {
           item.createdAt = dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss');
           item.approval_time = dayjs(item.approval_time).format('YYYY年MM月DD日 HH:mm:ss');
@@ -230,7 +230,7 @@ Page({
       console.log(res);
       if (current == 0) {
         // 更新待审核数据
-        waitList = res.data.result.reverse().map(item => {
+        waitList = res.data.result.rows.reverse().map(item => {
           item.createdAt = dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss');
           return item;
         })
@@ -256,7 +256,7 @@ Page({
         
       } else {
         // 更新已审核数据
-        approvalList = res.data.result.reverse().map(item => {
+        approvalList = res.data.result.rows.reverse().map(item => {
           item.createdAt = dayjs(item.createdAt).format('YYYY年MM月DD日 HH:mm:ss');
           item.approval_time = dayjs(item.approval_time).format('YYYY年MM月DD日 HH:mm:ss');
           if (item.is_pass === 1) {
@@ -315,7 +315,8 @@ Page({
   binddragend1(e) {
     // console.log(e);
     this.setData({
-      scrollTop1: e.detail.scrollTop
+      scrollTop1: e.detail.scrollTop,
+      scrollTop2: e.detail.scrollTop,
     })
   },
 
@@ -330,6 +331,7 @@ Page({
         console.log(rect);
         this.setData({
           scrollTop1: rect.height + 200,
+          scrollTop2: rect.height + 200,
         })
       }).exec()
     }, 1)

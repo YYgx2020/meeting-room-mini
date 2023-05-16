@@ -174,6 +174,12 @@ Page({
 
   submitRegister() {
     const {
+      fillout
+    } = this.data;
+    if (!fillout) {
+      return;
+    }
+    const {
       resetForm
     } = this.data;
     wx.showLoading({
@@ -181,8 +187,8 @@ Page({
     })
     wx.$api.user.changePassword(resetForm).then(res => {
       console.log(res);
-      wx.navigateBack({
-        delta: 1,
+      wx.switchTab({
+        url: '/pages/index/index',
       })
     })
   },

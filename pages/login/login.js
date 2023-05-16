@@ -10,6 +10,8 @@ Page({
       password: null,
     },
     fillout: false, // 标记是否填写完表单
+    showEye: true,
+    type: 'password'
   },
 
   /**
@@ -17,6 +19,24 @@ Page({
    */
   onLoad(options) {
 
+  },
+
+  lookPassword() {
+    let {
+      showEye,
+      type,
+    } = this.data;
+    if (type === 'password') {
+      showEye = false;
+      type = 'text';
+    } else {
+      showEye = true;
+      type = 'password';
+    }
+    this.setData({
+      showEye,
+      type,
+    })
   },
 
   // 获取用户输入
@@ -81,6 +101,10 @@ Page({
     } = this.data;
     console.log(loginForm);
     if (!fillout) return;
+    wx.showLoading({
+      title: '正在登录中',
+      mask: true,
+    })
     wx.$api.user.login(loginForm).then(res => {
       console.log(res);
       // 登录成功之后保存用户信息

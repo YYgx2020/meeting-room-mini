@@ -5,149 +5,209 @@ Page({
    * 页面的初始数据
    */
   data: {
-    showSearch: true, // 是否展示日期搜索按钮
-    keyWord: null,
-    timer: null,
-    searching: false, // 是否展示取消图标和取消按钮
-    showDateTip: false, // 是否展示带有搜索日期的消息条
-    cancelIcon: false, // 是否展示取消图标
-    searchResult: [],
+    weekday: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"], // 周表
+    selectedDate: '',
+    timeStamp: '',
+    times: [{
+        id: 0,
+        value: '08:00-10:00'
+      },
+      {
+        id: 1,
+        value: '10:00-12:00'
+      },
+      {
+        id: 2,
+        value: '12:00-14:00'
+      },
+      {
+        id: 3,
+        value: '14:00-16:00'
+      },
+      {
+        id: 4,
+        value: '16:00-18:00'
+      },
+      {
+        id: 5,
+        value: '18:00-20:00'
+      },
+      {
+        id: 6,
+        value: '20:00-22:00'
+      },
+    ],
+    selectdeTime: '08:00-10:00',
+    start_time: '08:00',
+    end_time: '10:00',
+    searchReasult: [],
+    showResult: false,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.getDefaultDate();
   },
 
-  // 是否展示搜索页面
-  showSearch() {
-    this.setData({
-      showSearch: true,
-      searching: true
-    })
-  },
-
-  // 获取用户输入
-  bindinputEvent(e) {
-    // console.log(e);
+  // 获取七天后的日期
+  getDefaultDate() {
     const {
-      value,
-    } = e.detail;
-    let {
-      timer
+      weekday
     } = this.data;
-    if (value === '') {
-      clearTimeout(timer);
-      this.setData({
-        keyWord: e.detail.value,
-        searching: false,
-        showSearch: true,
-        searchResult: [],
-        showTip: false,
-        cancelIcon: false,
-      })
-    } else {
-      if (timer) clearTimeout(timer);
-      // if (value)
-      timer = setTimeout(() => {
-        console.log('发送请求，关键词：', this.data.keyWord);
-        wx.$api.room.searchByOrgid({
-          organization_id: wx.$userInfo.organization_id,
-          keyWord: this.data.keyWord
-        }).then(res => {
-          console.log(res);
-          this.setData({
-            searchResult: res.data.result.rows,
-            showSearch: true,
-            showTip: true,
-            searching: true,
-          })
-        })
-      }, 200);
-      console.log(e.detail.value);
-      this.setData({
-        keyWord: e.detail.value,
-        cancelIcon: true,
-        searching: true,
-        timer,
-        cancelIcon: true
-      })
+    const myDate = new Date(); // 获取今天的日期
+    const dateList = [];
+    for (let i = 0; i < 7; i++) {
+      let currentWeekday = myDate.getDay();
+      weekday.forEach((item, index) => {
+        if (currentWeekday === index) {
+          currentWeekday = item;
+        }
+      });
+      let dateTemp =
+        myDate.getMonth() + 1 + "/" + myDate.getDate() + " " + currentWeekday;
+      let timeStamp = new Date(
+        myDate.getFullYear() +
+        "-" +
+        (myDate.getMonth() + 1) +
+        "-" +
+        myDate.getDate()
+      ).getTime();
+      dateList.push({
+        id: i,
+        date: dateTemp,
+        timeStamp, // 增加一个时间戳，方便后续处理预约信息时进行时间的对比
+      });
+      myDate.setDate(myDate.getDate() + 1);
     }
-  },
-
-  // 取消搜索
-  cancelSearch() {
-    console.log(1213123);
-    const {
-      searching
-    } = this.data;
-    if (searching) {
-      this.setData({
-        keyWord: null,
-        searching: false,
-        cancelIcon: false,
-        showSearch: true,
-        searchResult: [],
-        showTip: false,
-      })
-    }
-  },
-
-  // 返回上一页
-  navBack() {
-    wx.navigateBack({
-      delta: 1,
-    })
-  },
-
-  searchEvent() {
-    const {
-      keyWord
-    } = this.data;
-    if (keyWord === null || keyWord === '') {
-      wx.showToast({
-        title: '请输入关键词',
-        icon: 'none'
-      })
-    }
-  },
-
-  // 按日期搜索
-  bindDateChange(e) {
-    console.log(e);
-    const {
-      value
-    } = e.detail;
-    let date = value.split('-');
-    // console.log(date);
-    date = date[0] + '年' + date[1] + '月' + date[2] + '日';
     this.setData({
-      date,
-      showDateTip: true,
-    })
-
-  },
-
-  // 重新选择日期
-  resetDate() {
-    this.setData({
-      showTip: false,
-      searching: false,
-      searchResult: [],
-      keyWord: null,
-      cancelIcon: false,
-    })
-  },
-
-  // 跳转到会议室详情页面
-  navToRoomDetail(e) {
-    console.log(e);
-    wx.$currentRoomInfo = e.currentTarget.dataset.item;
-    wx.navigateTo({
-      url: "/pages/roomDetail/roomDetail",
+      dateList,
+      selectedDate: dateList[0].date,
+      timeStamp: dateList[0].timeStamp,
     });
+  },
+
+  // 获取会议室编号和人数
+  handleInput(e) {
+    const id = e.currentTarget.id;
+    const value = e.detail.value;
+    this.setData({
+      [`${id}`]: value,
+    })
+  },
+
+  // 日期选择器
+  bindDateChange1(e) {
+    console.log(e);
+    const {
+      dateList
+    } = this.data;
+    let index = e.detail.value * 1;
+    this.setData({
+      selectedDate: dateList[index].date,
+      timeStamp: dateList[index].timeStamp,
+    })
+  },
+
+  bindDateChange2(e) {
+    console.log(e);
+    const {
+      times
+    } = this.data;
+    let index = e.detail.value * 1;
+    this.setData({
+      selectdeTime: times[index].value,
+      start_time: times[index].value.split('-')[0],
+      end_time: times[index].value.split('-')[1],
+    })
+  },
+
+  // 查找
+  search() {
+    let {
+      timeStamp,
+      code,
+      start_time,
+      end_time,
+      number
+    } = this.data;
+    console.log(timeStamp, code, start_time, end_time, number);
+    // 发请求获取数据
+    const data = {
+      date: timeStamp,
+      code,
+      start_time,
+      end_time,
+      number,
+      organization_id: wx.$userInfo.organization_id,
+    }
+    wx.$api.room.getConditionalQuery(data).then(res => {
+      console.log(res.data.result);
+      let searchReasult = res.data.result;
+      searchReasult = searchReasult.map(item => {
+        const appoint_info = item.appoint_info;
+        for (let i = 0; i < appoint_info.length; i++) {
+          if (appoint_info[i].is_pass === 1) {
+            item.status = 1;
+            break;
+          } else if (appoint_info[i].is_pass === 0) {
+            item.status = 0;
+            if (wx.$userInfo.is_admin) {
+              item.has = true;
+            }
+          }
+        }
+        if (item.status == undefined) {
+          Object.assign(item, {
+            status: 0
+          });
+        }
+        if (appoint_info.length === 0) {
+          item.status = 0;
+        }
+        return item;
+      })
+      this.setData({
+        searchReasult,
+        showResult: true,
+      });
+    })
+  },
+
+  // 跳转到会议室预约页面
+  toNewAppoint(e) {
+    console.log(e);
+    let {
+      selectedDate,
+      selectdeTime,
+      timeStamp,
+    } = this.data;
+    const {
+      code,
+      status,
+      has
+    } = e.currentTarget.dataset.item;
+    wx.$currentRoomInfo = e.currentTarget.dataset.item;
+    if (has) {
+      wx.navigateTo({
+        url: `/pages/handleAppointItem/handleAppointItem?date=${selectedDate}&time=${selectdeTime}&timestamp=${timeStamp}&entry=roomDetail`,
+      });
+      
+    } else {
+      const appointInfo = e.currentTarget.dataset.item.appoint_info.filter(item => item.is_pass == 1);
+      console.log(appointInfo[0]);
+      if (status === 1) {
+        wx.showModal({
+          title: "预约信息",
+          content: `预约人：${appointInfo[0].contact}\r\n电话：${appointInfo[0].phone}`,
+        });
+        return;
+      }
+      wx.navigateTo({
+        url: `/pages/newAppoint/newAppoint?date=${selectedDate}&room=${code}&time=${selectdeTime}&timestamp=${timeStamp}`,
+      })
+    }
   },
 
   /**

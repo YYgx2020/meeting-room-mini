@@ -66,6 +66,8 @@ Page {
   line-height: 112rpx;
   font-size: 42rpx;
   color: var(--nodataTextColor);
+  display: flex;
+  justify-content: center;
 }
 
 .weui-form__control-area {

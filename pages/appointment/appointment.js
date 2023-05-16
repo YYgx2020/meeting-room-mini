@@ -329,7 +329,8 @@ Page({
   binddragend1(e) {
     // console.log(e);
     this.setData({
-      scrollTop1: e.detail.scrollTop
+      scrollTop1: e.detail.scrollTop,
+      scrollTop2: e.detail.scrollTop
     })
   },
 
@@ -344,6 +345,7 @@ Page({
         console.log(rect);
         this.setData({
           scrollTop1: rect.height + 200,
+          scrollTop2: rect.height + 200,
         })
       }).exec()
     }, 1)
