@@ -15,9 +15,10 @@ App({
     // 设置一些全局变量
     wx.$api = API;  // 全局 api 调用
     wx.$openid = null;  // 用户的 openid，发送订阅消息时用
-    wx.$userInfo = null;  // 用户信息
+    wx.$userInfo = {};  // 用户信息
     wx.$token = null;  // 全局 token
     wx.$login = false;  // 全局登录状态
+    wx.$currentRoomInfo = {};  // 标记当前会议室信息
     /* 
       消息模板
       1. 待审核提醒

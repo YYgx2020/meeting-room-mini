@@ -6,8 +6,7 @@ Page({
    */
   data: {
     title: "",
-    tempFilePaths:
-      "https://img.zcool.cn/community/01820f5ba3444da8012099c81cb940.jpg@2o.jpg",
+    tempFilePaths: "https://img.zcool.cn/community/01820f5ba3444da8012099c81cb940.jpg@2o.jpg",
     addForm: {
       cover: null,
       code: null,
@@ -55,7 +54,9 @@ Page({
 
   // 上传图片
   handleChooseImage(e) {
-    const { type } = this.data;
+    const {
+      type
+    } = this.data;
     console.log(e);
     wx.chooseMedia({
       count: 1,
@@ -87,7 +88,9 @@ Page({
 
   // 上传图片
   uploadCoverImg(timestamp, tempFilePaths) {
-    let { addForm } = this.data;
+    let {
+      addForm
+    } = this.data;
     console.log(timestamp, tempFilePaths);
     wx.showToast({
       title: "图片上传中",
@@ -109,11 +112,9 @@ Page({
           console.log(res1.fileID);
           wx.cloud
             .getTempFileURL({
-              fileList: [
-                {
-                  fileID: res1.fileID,
-                },
-              ],
+              fileList: [{
+                fileID: res1.fileID,
+              }, ],
             })
             .then((res3) => {
               wx.hideToast();
@@ -124,7 +125,10 @@ Page({
               // 清除微信小程序缓存
               console.log(res3.fileList);
               addForm.cover = res3.fileList[0].tempFileURL;
-              wx.$currentRoomInfo.cover = addForm.cover;
+              Object.assign(wx.$currentRoomInfo, {
+                cover: addForm.cover
+              });
+              // wx.$currentRoomInfo.cover = addForm.cover;
               this.setData({
                 fileID: res1.fileID,
                 addForm,
@@ -161,8 +165,12 @@ Page({
 
   // 获取会议室的输入
   handleInput(e) {
-    const { id } = e.target;
-    let { value } = e.detail;
+    const {
+      id
+    } = e.target;
+    let {
+      value
+    } = e.detail;
     this.setData({
       [`addForm.${id}`]: value,
     });
@@ -178,7 +186,10 @@ Page({
 
   // 提交会议室信息
   handleSubmit() {
-    const { addForm, type } = this.data;
+    const {
+      addForm,
+      type
+    } = this.data;
     let count = 0;
     for (let key in addForm) {
       // console.log(key);
