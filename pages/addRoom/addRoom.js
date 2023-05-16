@@ -222,6 +222,7 @@ Page({
           return;
         },
       });
+      return;
     }
 
     if (type === "add") {
