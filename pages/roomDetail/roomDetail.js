@@ -30,8 +30,7 @@ Page({
     navId: 0, // 导航标识
     current: 0, // swiper的索引，默认显示第一个
     weekday: ["周日", "周一", "周二", "周三", "周四", "周五", "周六"], // 周表
-    defaultAppoint: [
-      {
+    defaultAppoint: [{
         time: {
           startTime: "08:00",
           endTime: "10:00",
@@ -110,7 +109,10 @@ Page({
   },
 
   initFirstDay() {
-    const { current, dateList } = this.data;
+    const {
+      current,
+      dateList
+    } = this.data;
     this.handleShowAppointInfo(dateList[current].timeStamp);
   },
 
@@ -129,7 +131,9 @@ Page({
 
   // 导航栏点击事件
   changeNav(e) {
-    const { dateList } = this.data;
+    const {
+      dateList
+    } = this.data;
     let navId = e.currentTarget.id;
     this.setData({
       navId: navId * 1,
@@ -147,7 +151,9 @@ Page({
     // 变换之后查看当前页的安排是程序自动生成的还是数据库中有安排的
     console.log(e);
     const current = e.detail.current;
-    const { dateList } = this.data;
+    const {
+      dateList
+    } = this.data;
     this.setData({
       addNewAppoint: true,
       current,
@@ -158,7 +164,9 @@ Page({
 
   // 获取七天后的日期
   getDefaultDate() {
-    const { weekday } = this.data;
+    const {
+      weekday
+    } = this.data;
     const myDate = new Date(); // 获取今天的日期
     const dateList = [];
     for (let i = 0; i < 7; i++) {
@@ -172,10 +180,10 @@ Page({
         myDate.getMonth() + 1 + "/" + myDate.getDate() + " " + currentWeekday;
       let timeStamp = new Date(
         myDate.getFullYear() +
-          "-" +
-          (myDate.getMonth() + 1) +
-          "-" +
-          myDate.getDate()
+        "-" +
+        (myDate.getMonth() + 1) +
+        "-" +
+        myDate.getDate()
       ).getTime();
       dateList.push({
         id: i,
@@ -193,7 +201,11 @@ Page({
   // 传入当前日期
   handleShowAppointInfo(timeStamp) {
     // 发送网络请求，获取该会议室，当前日期下的预约情况
-    let { room_id, defaultAppoint, roomAppointList } = this.data;
+    let {
+      room_id,
+      defaultAppoint,
+      roomAppointList
+    } = this.data;
     wx.$api.userAppoint
       .get({
         room_id,
@@ -263,7 +275,14 @@ Page({
             console.log(item);
             return item;
           });
-
+          let currentHour = new Date().getHours();
+          roomAppointList.forEach(item => {
+            if (item.time.endTime.split(":")[0] * 1 <= currentHour) {
+              item["isban"] = true;
+            } else {
+              item["isban"] = false;
+            }
+          })
           // console.log(roomAppointList);
           this.setData({
             roomAppointList,
@@ -283,9 +302,13 @@ Page({
     // if (current == undefined) {
     //   current = 0;
     // }
-    let { current } = this.data;
+    let {
+      current
+    } = this.data;
     let currentHour = new Date().getHours();
-    let { defaultAppoint } = this.data;
+    let {
+      defaultAppoint
+    } = this.data;
     if (current === 0) {
       defaultAppoint.forEach((item) => {
         if (item.time.endTime.split(":")[0] * 1 <= currentHour) {
@@ -313,8 +336,16 @@ Page({
   // 新建预约
   newAppoint(e) {
     console.log(e);
-    const { dateList, current, code, roomAppointList } = this.data;
-    const { item, index } = e.currentTarget.dataset;
+    const {
+      dateList,
+      current,
+      code,
+      roomAppointList
+    } = this.data;
+    const {
+      item,
+      index
+    } = e.currentTarget.dataset;
     if (item.detail.length !== 0) {
       if (item.hasDealAll && item.isAppointed) {
         // 下弹窗弹出提示会议室预约情况
