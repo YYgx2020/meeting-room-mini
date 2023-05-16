@@ -204,7 +204,8 @@ Page({
     let {
       room_id,
       defaultAppoint,
-      roomAppointList
+      roomAppointList,
+      current
     } = this.data;
     wx.$api.userAppoint
       .get({
@@ -276,13 +277,15 @@ Page({
             return item;
           });
           let currentHour = new Date().getHours();
-          roomAppointList.forEach(item => {
-            if (item.time.endTime.split(":")[0] * 1 <= currentHour) {
-              item["isban"] = true;
-            } else {
-              item["isban"] = false;
-            }
-          })
+          if (current === 0) {
+            roomAppointList.forEach(item => {
+              if (item.time.endTime.split(":")[0] * 1 <= currentHour) {
+                item["isban"] = true;
+              } else {
+                item["isban"] = false;
+              }
+            })
+          }
           // console.log(roomAppointList);
           this.setData({
             roomAppointList,

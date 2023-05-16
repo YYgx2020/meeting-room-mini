@@ -43,7 +43,7 @@
       <view class="list-item__cell">
         <view class="list-item__title">申请缘由</view>
         <view class="list-item__content">
-          <text user-select="true">{{item.reason}}</text>
+          <text user-select="true">{{item.reason ? item.reason : '无'}}</text>
         </view>
       </view>
       <!-- 审批按钮 -->
