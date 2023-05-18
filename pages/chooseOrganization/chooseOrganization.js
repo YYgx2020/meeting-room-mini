@@ -19,6 +19,13 @@ Page({
 
   },
 
+  // 跳转到机构入驻申请页面
+  navToOrgApplyPage() {
+    wx.navigateTo({
+      url: '/pages/organization/organization',
+    })
+  },
+
   // 获取用户输入
   bindinputEvent(e) {
     console.log(e);

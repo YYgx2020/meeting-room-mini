@@ -163,6 +163,28 @@ Page({
     });
   },
 
+  // 判断手机号的
+  handlePhone(e) {
+    const id = e.currentTarget.id;
+    const value = e.detail.value;
+    const phoneReg = /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/;
+    if (value !== null && value !== '') {
+      if (phoneReg.test(value) === false) {
+        wx.showModal({
+          title: '提示',
+          content: '请输入正确的手机号码',
+        })
+        this.setData({
+          [`addForm.${id}`]: null,
+        })
+        return;
+      }
+    }
+    this.setData({
+      [`addForm.${e.currentTarget.id}`]: value,
+    });
+  },
+
   // 获取会议室的输入
   handleInput(e) {
     const {

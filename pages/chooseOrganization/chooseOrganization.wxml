@@ -20,8 +20,8 @@
   </view>
   <!-- 搜索结果列表 -->
   <scroll-view class="search-scroll__box" scroll-y enable-flex scroll-anchoring="{{true}}">
-    <view class="no-data" wx:if="{{resultData.length === 0 && searching}}">
-      <text>无相关机构</text>
+    <view class="no-data-tip" wx:if="{{resultData.length === 0 && searching}}">
+      <text>找不到相关机构，您可以点击<text class="link" bindtap="navToOrgApplyPage">这里</text>申请入驻您的机构</text>
     </view>
     <view class="{{index === 0 ? 'result-item' : 'result-item divider-line'}}" wx:for="{{resultData}}" data-item="{{item}}" bindtap="back">
       <view class="name">

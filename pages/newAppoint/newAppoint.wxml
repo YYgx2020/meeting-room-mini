@@ -21,7 +21,7 @@
               <text class="weui-label">联系电话</text>
             </view>
             <view class="weui-cell__bd">
-              <input value="{{submitForm.phone}}" type="number" maxlength="11" id="phone" placeholder="填写联系电话" class="weui-input" bindinput="handleInput" />
+              <input value="{{submitForm.phone}}" type="number" maxlength="11" id="phone" placeholder="填写联系电话" class="weui-input" bindblur="handlePhone" />
             </view>
           </label>
           <label class="weui-cell weui-cell_active">

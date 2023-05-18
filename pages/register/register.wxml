@@ -62,7 +62,7 @@
               <text class="weui-label">电话</text>
             </view>
             <view class="weui-cell__bd">
-              <input type="number" id="phone" bindinput="handleInput" maxlength="11" class="weui-input" placeholder="请输入您的电话" />
+              <input type="number" value="{{registerForm.phone}}" id="phone" bindblur="handlePhone" maxlength="11" class="weui-input" placeholder="请输入您的电话" />
             </view>
           </label>
           <!-- 密码 -->
@@ -89,7 +89,7 @@
               <text class="weui-label">邮箱</text>
             </view>
             <view class="weui-cell__bd">
-              <input type="text" id="email" bindinput="handleInput" maxlength="30" class="weui-input" placeholder="请输入您的邮箱" />
+              <input type="text" value="{{registerForm.email}}" id="email" bindinput="handleInput" maxlength="30" class="weui-input" placeholder="请输入您的邮箱" />
             </view>
           </view>
           <view class="weui-cell weui-cell_active">

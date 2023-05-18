@@ -61,7 +61,7 @@
               <text user-select class="weui-label">电话</text>
             </view>
             <view class="weui-cell__bd">
-              <input disabled="{{disabled}}" value="{{addForm.phone}}" type="number" id="phone" bindinput="handleInput" maxlength="11" placeholder="填写管理员电话" />
+              <input disabled="{{disabled}}" value="{{addForm.phone}}" type="number" id="phone" bindblur="handlePhone" maxlength="11" placeholder="填写管理员电话" />
             </view>
           </label>
           <label class="weui-cell weui-cell_active">

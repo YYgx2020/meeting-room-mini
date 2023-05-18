@@ -6,8 +6,7 @@ Page({
   data: {
     role: null,
     organization: "",
-    roles: [
-      {
+    roles: [{
         id: 1,
         value: "学生",
         checked: true,
@@ -88,11 +87,36 @@ Page({
     });
   },
 
+  // 判断手机号的
+  handlePhone(e) {
+    const id = e.currentTarget.id;
+    const value = e.detail.value;
+    const phoneReg = /^1(3[0-9]|4[01456879]|5[0-35-9]|6[2567]|7[0-8]|8[0-9]|9[0-35-9])\d{8}$/;
+    if (value !== null && value !== '') {
+      if (phoneReg.test(value) === false) {
+        wx.showModal({
+          title: '提示',
+          content: '请输入正确的手机号码',
+        })
+        this.setData({
+          [`registerForm.${id}`]: null,
+        })
+        return;
+      }
+    }
+    this.setData({
+      [`registerForm.${e.currentTarget.id}`]: value,
+    });
+    this.formIsFillout();
+  },
+
   // 统一的输入获取
   handleInput(e) {
     console.log(e);
     console.log(this.data.registerForm);
-    let { registerForm } = this.data;
+    let {
+      registerForm
+    } = this.data;
     const id = e.currentTarget.id;
     if (id === "verifyPwd") {
       if (registerForm.password === null) {
@@ -115,7 +139,9 @@ Page({
 
   // 确认密码的
   handleInput2(e) {
-    let { registerForm } = this.data;
+    let {
+      registerForm
+    } = this.data;
     const id = e.currentTarget.id;
     const value = e.detail.value;
     console.log(id, value);
@@ -148,7 +174,10 @@ Page({
 
   // 判断表单是否填写完毕
   formIsFillout() {
-    const { registerForm, totalCount } = this.data;
+    const {
+      registerForm,
+      totalCount
+    } = this.data;
     let count = 0;
     for (let key in registerForm) {
       const value = registerForm[key];
@@ -196,7 +225,9 @@ Page({
     }
     clearTimeout(timer1);
     console.log("邮箱：", this.data.registerForm.email);
-    let { email } = this.data.registerForm;
+    let {
+      email
+    } = this.data.registerForm;
     console.log("email: ", email);
     // 先查看邮箱是否填写
     if (email === null) {
@@ -205,6 +236,18 @@ Page({
         icon: "error",
       });
       return;
+    } else {
+      const emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+      if (emailReg.test(email) === false) {
+        wx.showModal({
+          title: '提示',
+          content: '请输入有效的邮箱',
+        })
+        this.setData({
+          ['registerForm.email']: null,
+        })
+        return;
+      }
     }
     wx.showLoading({
       title: "验证码获取中",
@@ -230,7 +273,10 @@ Page({
     提交时，通过邮箱告知用户审核结果
   */
   submitRegister() {
-    let { registerForm, fillout } = this.data;
+    let {
+      registerForm,
+      fillout
+    } = this.data;
     if (!fillout) return;
     wx.showLoading({
       title: "发送中",
@@ -251,8 +297,7 @@ Page({
             console.log(registerForm);
             wx.showModal({
               title: "提示",
-              content:
-                "您的注册申请已提交，请耐心等待管理员审核，审核结果将会下发到您注册填写的邮箱，请注意查收",
+              content: "您的注册申请已提交，请耐心等待管理员审核，审核结果将会下发到您注册填写的邮箱，请注意查收",
               success: (res2) => {
                 wx.switchTab({
                   url: "/pages/index/index",
@@ -293,7 +338,9 @@ Page({
     // const pages = getCurrentPages();
     // console.log(pages);
     console.log(this.data);
-    let { registerForm } = this.data;
+    let {
+      registerForm
+    } = this.data;
     if (this.data.chooseItem) {
       let organization = this.data.chooseItem.name;
       organization = organization

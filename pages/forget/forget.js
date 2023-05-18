@@ -152,6 +152,18 @@ Page({
         icon: 'error'
       })
       return;
+    } else {
+      const emailReg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+      if (emailReg.test(email) === false) {
+        wx.showModal({
+          title: '提示',
+          content: '请输入有效的邮箱',
+        })
+        this.setData({
+          ['resetForm.email']: null,
+        })
+        return;
+      }
     }
     wx.showLoading({
       title: '验证码获取中'

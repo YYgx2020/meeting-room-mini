@@ -49,7 +49,6 @@ Page({
     } = e.detail;
 
     value = value.trim();
-
     // if (!isNaN(value)) {
     //   value *= 1;
     // }

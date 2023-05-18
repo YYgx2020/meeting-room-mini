@@ -23,7 +23,8 @@
     "pages/newAppoint/newAppoint",
     "pages/handleAppointItem/handleAppointItem",
     "pages/roomList/components/search/search",
-    "pages/changeUserInfo/changeUserInfo"
+    "pages/changeUserInfo/changeUserInfo",
+    "components/tabbar/tabbar"
   ],
   "window": {
     "backgroundTextStyle": "light",
